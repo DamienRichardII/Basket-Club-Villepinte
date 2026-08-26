@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administration — Basket Club Villepinte</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0e2050">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ====================================================== ÉCRAN DE CONNEXION -->
+<div class="a-login" id="ecran-connexion">
+  <div class="a-login__box">
+    <img src="assets/img/logo-bcv93.webp" alt="Basket Club Villepinte" width="66" height="68">
+    <h1>Administration</h1>
+    <p class="sub">Espace réservé au bureau du club</p>
+
+    <p class="a-msg" id="msg-connexion" role="status" aria-live="polite"></p>
+
+    <form id="form-connexion">
+      <div class="a-field">
+        <label for="login-email">Adresse email</label>
+        <input class="a-input" id="login-email" type="email" autocomplete="username" required>
+      </div>
+      <div class="a-field">
+        <label for="login-mdp">Mot de passe</label>
+        <input class="a-input" id="login-mdp" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="a-btn a-btn--gold" type="submit" style="width:100%" id="btn-connexion">Se connecter</button>
+    </form>
+
+    <p style="margin:18px 0 0;text-align:center;font-size:.8rem">
+      <a href="index.html" style="color:#5d6880">Retour au site</a>
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================ BACK-OFFICE -->
+<div id="ecran-admin" hidden>
+
+  <header class="a-header">
+    <div class="a-header__inner">
+      <div class="a-brand">
+        <img src="assets/img/logo-bcv93.webp" alt="" width="34" height="35">
+        <div>
+          <strong>Basket Club Villepinte</strong>
+          <span>Back-office</span>
+        </div>
+      </div>
+      <div class="a-header__right">
+        <span class="a-user" id="admin-email"></span>
+        <a class="a-btn a-btn--ghost a-btn--sm" href="index.html" target="_blank" rel="noopener">Voir le site</a>
+        <button class="a-btn a-btn--ghost a-btn--sm" type="button" id="btn-deconnexion">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="a-main">
+    <p class="a-msg" id="msg-global" role="status" aria-live="polite"></p>
+
+    <div class="a-tabs" role="tablist" aria-label="Sections du back-office">
+      <button class="a-tab" role="tab" data-panel="medias"       aria-selected="true">Médias</button>
+      <button class="a-tab" role="tab" data-panel="categories"   aria-selected="false">Catégories</button>
+      <button class="a-tab" role="tab" data-panel="palmares"     aria-selected="false">Palmarès</button>
+      <button class="a-tab" role="tab" data-panel="histoire"     aria-selected="false">Histoire</button>
+      <button class="a-tab" role="tab" data-panel="boutique"     aria-selected="false">Boutique</button>
+      <button class="a-tab" role="tab" data-panel="reglages"     aria-selected="false">Réglages</button>
+      <button class="a-tab" role="tab" data-panel="inscriptions" aria-selected="false">Inscriptions</button>
+    </div>
+
+    <!-- ------------------------------------------------------------ MÉDIAS -->
+    <section class="a-panel" data-panel="medias" data-active="true" role="tabpanel" aria-label="Médias">
+      <div class="a-card">
+        <div class="a-card__head">
+          <h2>Ajouter un média</h2>
+          <p>Photos d'équipes, visuels d'historique, articles de la boutique, galerie.</p>
+        </div>
+
+        <div class="a-row a-row--3">
+          <div class="a-field">
+            <label for="media-page">Page / section du site</label>
+            <select class="a-select" id="media-page">
+              <option value="categories">Catégories — photo d'effectif</option>
+              <option value="histoire">Histoire — visuel de frise</option>
+              <option value="palmares">Palmarès — visuel</option>
+              <option value="boutique">Boutique — photo d'article</option>
+              <option value="accueil">Accueil</option>
+              <option value="galerie">Galerie</option>
+            </select>
+          </div>
+          <div class="a-field">
+            <label for="media-section">Rattachement (facultatif)</label>
+            <input class="a-input" id="media-section" placeholder="Ex. U13, 2013, maillot-domicile">
+          </div>
+          <div class="a-field">
+            <label for="media-legende">Légende</label>
+            <input class="a-input" id="media-legende" placeholder="Ex. Effectif U13 saison 2026-2027">
+          </div>
+        </div>
+
+        <div class="a-field">
+          <label for="media-alt">Texte alternatif (accessibilité — décrit l'image)</label>
+          <input class="a-input" id="media-alt" placeholder="Ex. L'équipe U13 posant au gymnase du Cosec">
+        </div>
+
+        <div class="a-dropzone" id="zone-depot">
+          <p style="margin:0 0 10px">Glissez un fichier ici, ou</p>
+          <input type="file" id="media-fichier" accept="image/*,video/*" hidden>
+          <button class="a-btn" type="button" id="btn-choisir-fichier">Choisir un fichier</button>
+          <p style="margin:12px 0 0;font-size:.78rem">Images et vidéos, 10 Mo maximum par fichier.</p>
+        </div>
+
+        <div id="apercu-avant" style="margin-top:16px"></div>
+
+        <div class="a-card__actions" style="margin-top:16px">
+          <button class="a-btn a-btn--gold" type="button" id="btn-envoyer-media" disabled>Envoyer le média</button>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-card__head">
+          <h2>Médiathèque</h2>
+          <p>Aperçu, remplacement et suppression des fichiers déjà en ligne.</p>
+          <div class="a-card__actions">
+            <select class="a-select" id="filtre-media" style="width:auto">
+              <option value="">Toutes les pages</option>
+              <option value="categories">Catégories</option>
+              <option value="histoire">Histoire</option>
+              <option value="palmares">Palmarès</option>
+              <option value="boutique">Boutique</option>
+              <option value="accueil">Accueil</option>
+              <option value="galerie">Galerie</option>
+            </select>
+          </div>
+        </div>
+        <div class="a-media-grid" id="grille-medias"></div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------- CATÉGORIES -->
+    <section class="a-panel" data-panel="categories" role="tabpanel" aria-label="Catégories">
+      <div class="a-card">
+        <div class="a-card__head">
+          <h2>Catégories / équipes</h2>
+          <p>Nom, tranche d'âge, description, créneaux et photo d'effectif.</p>
+          <div class="a-card__actions">
+            <button class="a-btn a-btn--ghost" type="button" data-add="categories">Ajouter une catégorie</button>
+            <button class="a-btn a-btn--gold" type="button" data-save="categories">Enregistrer</button>
+          </div>
+        </div>
+        <div class="a-table-wrap"><table class="a-table" id="table-categories"></table></div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------- PALMARÈS -->
+    <section class="a-panel" data-panel="palmares" role="tabpanel" aria-label="Palmarès">
+      <div class="a-card">
+        <div class="a-card__head">
+          <h2>Palmarès</h2>
+          <p>Les chiffres affichés sur le site sont calculés à partir de cette liste.</p>
+          <div class="a-card__actions">
+            <button class="a-btn a-btn--ghost" type="button" data-add="honours">Ajouter un titre</button>
+            <button class="a-btn a-btn--gold" type="button" data-save="honours">Enregistrer</button>
+          </div>
+        </div>
+        <div class="a-table-wrap"><table class="a-table" id="table-honours"></table></div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------- HISTOIRE -->
+    <section class="a-panel" data-panel="histoire" role="tabpanel" aria-label="Histoire">
+      <div class="a-card">
+        <div class="a-card__head">
+          <h2>Frise chronologique</h2>
+          <p>Les grandes dates du club, affichées par ordre d'année croissante.</p>
+          <div class="a-card__actions">
+            <button class="a-btn a-btn--ghost" type="button" data-add="timeline_events">Ajouter une date</button>
+            <button class="a-btn a-btn--gold" type="button" data-save="timeline_events">Enregistrer</button>
+          </div>
+        </div>
+        <div class="a-table-wrap"><table class="a-table" id="table-timeline_events"></table></div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------- BOUTIQUE -->
+    <section class="a-panel" data-panel="boutique" role="tabpanel" aria-label="Boutique">
+      <div class="a-card">
+        <div class="a-card__head">
+          <h2>Articles de la boutique</h2>
+          <p>Tant que « Tarif indicatif » est coché, le prix est signalé comme provisoire sur le site.
+             Ajoutez une image et un lien de paiement pour ouvrir la vente.</p>
+          <div class="a-card__actions">
+            <button class="a-btn a-btn--ghost" type="button" data-add="shop_products">Ajouter un article</button>
+            <button class="a-btn a-btn--gold" type="button" data-save="shop_products">Enregistrer</button>
+          </div>
+        </div>
+        <div class="a-table-wrap"><table class="a-table" id="table-shop_products"></table></div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------- RÉGLAGES -->
+    <section class="a-panel" data-panel="reglages" role="tabpanel" aria-label="Réglages">
+      <div id="groupes-reglages"></div>
+      <div class="a-card__actions" style="justify-content:flex-end">
+        <button class="a-btn a-btn--gold" type="button" id="btn-save-reglages">Enregistrer les réglages</button>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------ INSCRIPTIONS -->
+    <section class="a-panel" data-panel="inscriptions" role="tabpanel" aria-label="Inscriptions">
+      <div class="a-card">
+        <div class="a-card__head">
+          <h2>Demandes de pré-inscription</h2>
+          <p id="compteur-inscriptions"></p>
+          <div class="a-card__actions">
+            <select class="a-select" id="filtre-statut" style="width:auto">
+              <option value="">Tous les statuts</option>
+              <option value="nouveau">Nouveau</option>
+              <option value="traite">Traité</option>
+              <option value="archive">Archivé</option>
+            </select>
+            <button class="a-btn a-btn--ghost" type="button" id="btn-export-csv">Exporter en CSV</button>
+          </div>
+        </div>
+        <div class="a-table-wrap"><table class="a-table" id="table-inscriptions"></table></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/vendor/supabase.min.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
