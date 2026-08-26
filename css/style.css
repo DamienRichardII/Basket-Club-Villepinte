@@ -370,6 +370,17 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero__logo { margin: 40px auto 0; width: min(300px, 72%); filter: drop-shadow(0 18px 34px rgba(0,0,0,.42)); }
 @media (min-width: 980px) { .hero__logo { margin: 0 0 0 auto; width: min(360px, 100%); } }
 
+/* Mobile et tablette : le blason passe au-dessus du sur-titre, du titre et des
+   boutons — l'ordre du HTML reste inchangé, seul l'affichage est réordonné. */
+@media (max-width: 979.98px) {
+  .hero:not(.hero--page) .hero__inner { display: flex; flex-direction: column; }
+  .hero:not(.hero--page) .hero__logo {
+    order: -1;
+    margin: 0 auto 30px;
+    width: min(240px, 62%);
+  }
+}
+
 /* Variante « page intérieure » : plus courte, avec fil d'Ariane */
 .hero--page .hero__inner { padding-block: 42px 52px; display: block; }
 .hero--page .h1 { margin-bottom: 16px; }
