@@ -102,6 +102,8 @@ const SCHEMAS = {
     fields: [
       { key: 'code',          label: 'Code',        type: 'text',     width: '78px' },
       { key: 'name',          label: 'Nom',         type: 'text' },
+      { key: 'birth_years',   label: 'Nés en',      type: 'text',     width: '130px' },
+      { key: 'price_cents',   label: 'Licence (€)', type: 'euros',    width: '96px' },
       { key: 'age_range',     label: 'Âge',         type: 'text',     width: '110px' },
       { key: 'description',   label: 'Description', type: 'textarea' },
       { key: 'training_days', label: 'Entraînements', type: 'text' },
@@ -111,7 +113,7 @@ const SCHEMAS = {
       { key: 'sort_order',    label: 'Ordre',       type: 'number',   width: '76px' },
       { key: 'is_published',  label: 'En ligne',    type: 'check',    width: '76px' }
     ],
-    blank: () => ({ code: '', name: '', age_range: '', description: '', sort_order: 99, is_published: true })
+    blank: () => ({ code: '', name: '', birth_years: '', price_cents: null, sort_order: 99, is_published: true })
   },
   honours: {
     label: 'titre',
@@ -137,11 +139,28 @@ const SCHEMAS = {
     ],
     blank: () => ({ year: new Date().getFullYear(), title: '', description: '', sort_order: 99, is_published: true })
   },
+  training_slots: {
+    label: 'créneau',
+    order: 'sort_order',
+    fields: [
+      { key: 'venue',         label: 'Gymnase',    type: 'text' },
+      { key: 'team_label',    label: 'Équipe',     type: 'text' },
+      { key: 'category_code', label: 'Code cat.',  type: 'text',   width: '96px' },
+      { key: 'weekday',       label: 'Jour (1=lun … 6=sam)', type: 'number', width: '112px' },
+      { key: 'time_label',    label: 'Horaire',    type: 'text',   width: '130px' },
+      { key: 'coach',         label: 'Éducateur',  type: 'text',   width: '130px' },
+      { key: 'sort_order',    label: 'Ordre',      type: 'number', width: '76px' },
+      { key: 'is_published',  label: 'En ligne',   type: 'check',  width: '76px' }
+    ],
+    blank: () => ({ venue: '', team_label: '', weekday: 1, time_label: '',
+                    sort_order: 99, is_published: true })
+  },
   shop_products: {
     label: 'article',
     order: 'sort_order',
     fields: [
       { key: 'name',            label: 'Nom',            type: 'text' },
+      { key: 'group_name',      label: 'Famille',        type: 'text',   width: '130px' },
       { key: 'description',     label: 'Description',    type: 'textarea' },
       { key: 'price_cents',     label: 'Prix (€)',       type: 'euros',  width: '96px' },
       { key: 'image_url',       label: 'Photo (URL)',    type: 'media' },
@@ -152,7 +171,7 @@ const SCHEMAS = {
       { key: 'sort_order',      label: 'Ordre',          type: 'number', width: '76px' },
       { key: 'is_published',    label: 'En ligne',       type: 'check', width: '76px' }
     ],
-    blank: () => ({ name: '', description: '', price_cents: null, is_placeholder: true,
+    blank: () => ({ name: '', group_name: '', description: '', price_cents: null, is_placeholder: true,
                     available: false, sort_order: 99, is_published: true })
   }
 };

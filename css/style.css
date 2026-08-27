@@ -13,6 +13,9 @@
      07. Hero (accueil + pages intérieures)
      08. Bandeau de chiffres clés
      09. Cartes (aperçu, catégories, boutique, étapes)
+     09b. Planning des entraînements
+     09c. Grille tarifaire
+     09d. Boutique : regroupement par famille
      10. Frise chronologique (Histoire)
      11. Palmarès
      12. Inscription (formulaire + QR)
@@ -500,6 +503,97 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .badge--gold { background: var(--gold-500); color: var(--navy-900); }
 .badge--red  { background: var(--red-600); color: var(--white); }
+
+/* == 09b. PLANNING DES ENTRAÎNEMENTS ===================================== */
+.venue-block + .venue-block { margin-top: 40px; }
+
+.venue-block__head { margin-bottom: 16px; }
+.venue-block__name { font-family: var(--font-display); text-transform: uppercase; font-size: 1.25rem; }
+.venue-block__addr { font-size: .9rem; color: var(--ink-soft); margin: 4px 0 0; }
+
+.planning-wrap { overflow-x: auto; }
+
+.planning {
+  width: 100%; border-collapse: collapse; background: var(--white);
+  border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card);
+  min-width: 760px;
+}
+.planning th, .planning td {
+  padding: 12px 14px; text-align: left; border-bottom: 1px solid rgba(14, 32, 80, .1);
+  vertical-align: top; font-size: .92rem;
+}
+.planning thead th {
+  background: var(--navy-800); color: var(--gold-500);
+  font-family: var(--font-cond); text-transform: uppercase; letter-spacing: .14em;
+  font-weight: 700; font-size: .74rem; white-space: nowrap;
+}
+.planning tbody tr:last-child td { border-bottom: 0; }
+.planning tbody tr:nth-child(2n) { background: rgba(14, 32, 80, .035); }
+.planning th[scope="row"] {
+  font-family: var(--font-display); text-transform: uppercase; font-weight: 400;
+  font-size: .96rem; color: var(--ink); white-space: nowrap;
+}
+.planning td.is-empty { color: rgba(14, 32, 80, .22); }
+.slot { display: block; font-variant-numeric: tabular-nums; }
+.slot__coach {
+  display: block; margin-top: 2px;
+  font-family: var(--font-cond); text-transform: uppercase; letter-spacing: .1em;
+  font-size: .68rem; color: var(--ink-soft);
+}
+
+/* Sous 860 px : le tableau devient une liste de cartes, sans défilement latéral */
+@media (max-width: 859.98px) {
+  .planning-wrap { overflow-x: visible; }
+  .planning, .planning tbody, .planning tr, .planning td, .planning th { display: block; }
+  .planning { min-width: 0; box-shadow: none; background: transparent; }
+  .planning thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .planning tbody tr {
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow-card); padding: 14px 16px; margin-bottom: 12px;
+  }
+  .planning tbody tr:nth-child(2n) { background: var(--white); }
+  .planning th[scope="row"] { padding: 0 0 8px; border-bottom: 1px solid rgba(14,32,80,.12); margin-bottom: 8px; white-space: normal; }
+  .planning td { padding: 5px 0; border-bottom: 0; display: flex; gap: 10px; justify-content: space-between; }
+  .planning td.is-empty { display: none; }
+  .planning td::before {
+    content: attr(data-day);
+    font-family: var(--font-cond); text-transform: uppercase; letter-spacing: .12em;
+    font-weight: 600; font-size: .74rem; color: var(--red-600); flex: none;
+  }
+  .slot { text-align: right; }
+}
+
+/* == 09c. GRILLE TARIFAIRE (page inscription) ============================ */
+.tarifs { width: 100%; border-collapse: collapse; background: var(--white); box-shadow: var(--shadow-card); border-radius: var(--radius); overflow: hidden; }
+.tarifs th, .tarifs td { padding: 12px 16px; border-bottom: 1px solid rgba(14, 32, 80, .1); text-align: left; font-size: .95rem; }
+.tarifs thead th {
+  background: var(--gold-500); color: var(--navy-900);
+  font-family: var(--font-cond); text-transform: uppercase; letter-spacing: .14em;
+  font-weight: 700; font-size: .76rem;
+}
+.tarifs tbody tr:last-child td { border-bottom: 0; }
+.tarifs td:last-child, .tarifs th:last-child { text-align: right; }
+.tarifs__cat { font-family: var(--font-display); text-transform: uppercase; font-size: .98rem; }
+.tarifs__years { font-size: .86rem; color: var(--ink-soft); }
+.tarifs__price { font-family: var(--font-display); font-size: 1.05rem; color: var(--navy-600); white-space: nowrap; }
+
+/* Tarif rappelé sous le sélecteur de catégorie du formulaire */
+.tarif-note {
+  display: none; margin-top: 10px; padding: 10px 14px;
+  background: rgba(245, 197, 24, .14); border-left: 3px solid var(--gold-500);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: .9rem; color: rgba(255, 255, 255, .9);
+}
+.tarif-note[data-visible="true"] { display: block; }
+.tarif-note strong { color: var(--gold-500); }
+
+/* == 09d. BOUTIQUE : regroupement par famille =========================== */
+.shop-group + .shop-group { margin-top: 44px; }
+.shop-group__title {
+  font-family: var(--font-display); text-transform: uppercase; font-size: 1.2rem;
+  color: var(--white); margin-bottom: 6px;
+}
+.shop-group__rule { height: 2px; background: var(--gold-500); width: 54px; margin-bottom: 22px; }
 
 /* == 10. FRISE CHRONOLOGIQUE ============================================= */
 .timeline { position: relative; padding-left: 30px; }

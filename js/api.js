@@ -88,6 +88,10 @@
     products: function () {
       return select('shop_products', 'select=*&is_published=eq.true&order=sort_order.asc');
     },
+    trainingSlots: function () {
+      return select('training_slots',
+        'select=*&is_published=eq.true&order=venue.asc,sort_order.asc,weekday.asc');
+    },
     media: function (page) {
       return select('media_assets', 'select=*&page=eq.' + encodeURIComponent(page) + '&order=sort_order.asc');
     }

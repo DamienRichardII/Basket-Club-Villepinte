@@ -284,3 +284,17 @@ create policy medias_admin_delete on storage.objects
 --
 --    Aucun chiffre inventé n'a été inséré : le palmarès est vide et la frise ne
 --    contient que 2013, en attente des informations du bureau du club.
+
+-- ---------------------------------------------------------------------------
+-- 9. Ajouts saison 2026-2027 (migrations « bcv93_planning_tarifs_boutique »,
+--    « bcv93_categories_reelles_2026_2027 » et « bcv93_boutique_articles_reels »)
+-- ---------------------------------------------------------------------------
+--    categories      : colonnes price_cents (tarif de licence) et birth_years
+--    shop_products   : colonne group_name (famille d'articles)
+--    training_slots  : nouvelle table des créneaux d'entraînement
+--                      (venue, team_label, category_code, weekday 1-6, time_label,
+--                       coach, sort_order, is_published) — lecture publique du publié,
+--                      écriture réservée aux admins, comme le reste du contenu vitrine.
+--
+--    Données : 14 équipes réelles, 23 créneaux, 21 articles de la collection officielle.
+--    Historique complet : Supabase Studio > Database > Migrations.

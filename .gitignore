@@ -3,3 +3,6 @@ node_modules/
 .env
 .env.local
 *.log
+
+# Dossier de travail : visuels bruts non detoures (source brochure)
+assets/Boutique/

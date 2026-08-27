@@ -118,6 +118,7 @@
                 <option value="">Sélectionner une catégorie</option>
               </select>
               <span class="field-error">Merci de choisir une catégorie.</span>
+              <p class="tarif-note" id="tarif-note" role="status" aria-live="polite"></p>
             </div>
           </div>
 
@@ -176,7 +177,21 @@
   </div>
 </section>
 
-<section class="section section--cream section--tight">
+<section class="section section--cream section--tight" id="tarifs" style="padding-top:0">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Saison <span data-setting="inscription_season">2026-2027</span></p>
+      <h2 class="h2">Tarifs des licences</h2>
+      <p class="lead">Le tarif dépend de la catégorie d'âge. Il comprend la licence FFBB et
+      l'adhésion au club pour la saison complète.</p>
+    </div>
+    <div id="grille-tarifs">
+      <div class="skeleton" style="min-height:200px"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cream section--tight" style="padding-top:0">
   <div class="container">
     <div class="qr-block">
       <div>

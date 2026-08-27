@@ -115,23 +115,112 @@
            '</div>';
   }
 
+  /** Prix en euros, format français, à partir d'un montant en centimes. */
+  function euros(cents) {
+    return (cents / 100).toFixed(2).replace('.', ',').replace(',00', '') + ' \u20AC';
+  }
+
   function categoryCard(c) {
     var media = c.photo_url
       ? '<img src="' + esc(c.photo_url) + '" alt="' + esc(c.photo_alt || ('Effectif ' + c.name)) + '" loading="lazy" decoding="async">'
       : '<span class="card__glyph" aria-hidden="true">' + esc(c.code) + '</span>';
 
+    var meta = c.birth_years ? 'Nés en ' + c.birth_years : (c.age_range || '');
+
     return '<article class="card">' +
              '<div class="card__media">' + media + '</div>' +
              '<div class="card__body">' +
                '<h3 class="card__title">' + esc(c.name) + '</h3>' +
-               (c.age_range ? '<p class="card__meta">' + esc(c.age_range) + '</p>' : '') +
+               (meta ? '<p class="card__meta">' + esc(meta) + '</p>' : '') +
                (c.description ? '<p class="card__text">' + esc(c.description) + '</p>' : '') +
                (c.training_days ? '<p class="card__text"><strong>Entraînements :</strong> ' + esc(c.training_days) + '</p>' : '') +
+               (c.venue ? '<p class="card__text"><strong>Gymnase :</strong> ' + esc(c.venue) + '</p>' : '') +
+               (c.price_cents != null ? '<p class="card__text"><strong>Licence :</strong> ' + esc(euros(c.price_cents)) + '</p>' : '') +
                '<div class="card__foot">' +
                  '<a class="pill" href="inscription.html?categorie=' + encodeURIComponent(c.code) + '">Rejoindre cette équipe</a>' +
                '</div>' +
              '</div>' +
            '</article>';
+  }
+
+  /* ------------------------------------------------------------------
+     Planning des entraînements — une grille hebdomadaire par gymnase.
+     Source : table training_slots, alimentée depuis le back-office.
+     ------------------------------------------------------------------ */
+  var JOURS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+
+  function planningTable(venue, slots) {
+    // Regroupe les créneaux par équipe, en conservant l'ordre du planning
+    var teams = [];
+    var index = {};
+    slots.forEach(function (s) {
+      if (!index[s.team_label]) {
+        index[s.team_label] = { label: s.team_label, days: {} };
+        teams.push(index[s.team_label]);
+      }
+      (index[s.team_label].days[s.weekday] = index[s.team_label].days[s.weekday] || []).push(s);
+    });
+
+    var head = '<tr><th scope="col">Équipe</th>' +
+      JOURS.map(function (j) { return '<th scope="col">' + j + '</th>'; }).join('') + '</tr>';
+
+    var body = teams.map(function (t) {
+      var cells = JOURS.map(function (jour, i) {
+        var list = t.days[i + 1];
+        if (!list) {
+          return '<td class="is-empty" data-day="' + jour + '">—</td>';
+        }
+        return '<td data-day="' + jour + '">' + list.map(function (s) {
+          return '<span class="slot">' + esc(s.time_label) +
+                 (s.coach ? '<span class="slot__coach">' + esc(s.coach) + '</span>' : '') +
+                 '</span>';
+        }).join('') + '</td>';
+      }).join('');
+      return '<tr><th scope="row">' + esc(t.label) + '</th>' + cells + '</tr>';
+    }).join('');
+
+    return '<div class="venue-block">' +
+             '<div class="venue-block__head">' +
+               '<h3 class="venue-block__name">' + esc(venue) + '</h3>' +
+             '</div>' +
+             '<div class="planning-wrap">' +
+               '<table class="planning"><caption class="sr-only">Créneaux d\'entraînement — ' +
+                 esc(venue) + '</caption><thead>' + head + '</thead><tbody>' + body + '</tbody></table>' +
+             '</div>' +
+           '</div>';
+  }
+
+  /**
+   * @param {Element} target  conteneur de la grille
+   * @param {Object}  s       réglages du site, pour ordonner les gymnases
+   *                          (venue1_name en premier, puis venue2_name)
+   */
+  function loadPlanning(target, s) {
+    if (!target) return;
+    API.trainingSlots().then(function (rows) {
+      if (!rows.length) {
+        target.innerHTML = emptyState('Planning à venir',
+          'Les créneaux d\'entraînement seront publiés ici dès leur validation par le club.');
+        return;
+      }
+      var venues = [];
+      var byVenue = {};
+      rows.forEach(function (r) {
+        if (!byVenue[r.venue]) { byVenue[r.venue] = []; venues.push(r.venue); }
+        byVenue[r.venue].push(r);
+      });
+
+      var ordre = [(s && s.venue1_name) || '', (s && s.venue2_name) || ''];
+      venues.sort(function (a, b) {
+        var ia = ordre.indexOf(a), ib = ordre.indexOf(b);
+        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+      });
+
+      target.innerHTML = venues.map(function (v) { return planningTable(v, byVenue[v]); }).join('');
+    }).catch(function () {
+      target.innerHTML = emptyState('Planning momentanément indisponible',
+        'Merci de réessayer dans quelques instants.');
+    });
   }
 
   /* Visuels vectoriels de la boutique, aux couleurs du club.
@@ -263,10 +352,27 @@
   function loadProducts(target) {
     if (!target) return;
     API.products().then(function (rows) {
-      target.innerHTML = rows.length
-        ? rows.map(productCard).join('')
-        : emptyState('Boutique en préparation',
-            'Les articles du club seront mis en ligne prochainement.');
+      if (!rows.length) {
+        target.innerHTML = emptyState('Boutique en préparation',
+          'Les articles du club seront mis en ligne prochainement.');
+        return;
+      }
+      // Regroupement par famille d'articles, dans l'ordre défini en base
+      var groups = [];
+      var byGroup = {};
+      rows.forEach(function (p) {
+        var g = p.group_name || 'Articles du club';
+        if (!byGroup[g]) { byGroup[g] = []; groups.push(g); }
+        byGroup[g].push(p);
+      });
+      target.innerHTML = groups.map(function (g) {
+        return '<section class="shop-group">' +
+                 '<h2 class="shop-group__title">' + esc(g) + '</h2>' +
+                 '<div class="shop-group__rule" aria-hidden="true"></div>' +
+                 '<div class="grid grid--4">' + byGroup[g].map(productCard).join('') + '</div>' +
+               '</section>';
+      }).join('');
+      target.classList.remove('grid', 'grid--4');
     }).catch(function () {
       target.innerHTML = emptyState('Contenu momentanément indisponible',
         'Merci de réessayer dans quelques instants.');
@@ -322,6 +428,7 @@
     API.settings().then(function (s) {
       applySettings(s);
       if (page === 'contact') initVenues(s);
+      if (page === 'categories') loadPlanning($('#planning-entrainements'), s);
     });
 
     switch (page) {

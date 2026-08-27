@@ -34,6 +34,59 @@
     if (el) el.setAttribute('aria-invalid', invalid ? 'true' : 'false');
   }
 
+  /** Prix en euros, format français, à partir d'un montant en centimes. */
+  function euros(cents) {
+    return (cents / 100).toFixed(2).replace('.', ',').replace(',00', '') + ' \u20AC';
+  }
+
+  function escHtml(v) {
+    return String(v == null ? '' : v)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /** Catégories chargées, indexées par code, pour l'affichage du tarif. */
+  var CATS = {};
+
+  /** Affiche le tarif de la catégorie sélectionnée sous le sélecteur. */
+  function showTarif() {
+    var note = $('#tarif-note');
+    if (!note || !select) return;
+    var c = CATS[select.value];
+    if (!c) { note.setAttribute('data-visible', 'false'); note.innerHTML = ''; return; }
+    note.setAttribute('data-visible', 'true');
+    note.innerHTML = (c.price_cents != null)
+      ? 'Tarif de la licence <strong>' + escHtml(c.name) + '</strong> : <strong>' +
+        escHtml(euros(c.price_cents)) + '</strong> pour la saison.'
+      : 'Le tarif de la catégorie <strong>' + escHtml(c.name) +
+        '</strong> est communiqué par le secrétariat.';
+  }
+
+  /** Grille tarifaire complète affichée plus bas dans la page. */
+  function renderGrille(rows) {
+    var host = $('#grille-tarifs');
+    if (!host) return;
+    var avecTarif = rows.filter(function (c) { return c.price_cents != null; });
+    if (!avecTarif.length) {
+      host.innerHTML = '<div class="empty"><p class="empty__title">Tarifs à venir</p>' +
+        '<p>La grille tarifaire sera publiée ici dès sa validation par le bureau.</p></div>';
+      return;
+    }
+    host.innerHTML =
+      '<table class="tarifs">' +
+        '<caption class="sr-only">Tarifs des licences par catégorie</caption>' +
+        '<thead><tr><th scope="col">Catégorie</th><th scope="col">Tarif</th></tr></thead>' +
+        '<tbody>' + rows.map(function (c) {
+          return '<tr><td>' +
+                   '<span class="tarifs__cat">' + escHtml(c.name) + '</span>' +
+                   (c.birth_years ? '<br><span class="tarifs__years">Nés en ' + escHtml(c.birth_years) + '</span>' : '') +
+                 '</td><td><span class="tarifs__price">' +
+                   (c.price_cents != null ? escHtml(euros(c.price_cents)) : 'Sur demande') +
+                 '</span></td></tr>';
+        }).join('') + '</tbody>' +
+      '</table>';
+  }
+
   /** Âge révolu à la date du jour, à partir d'une date ISO (yyyy-mm-dd). */
   function age(iso) {
     if (!iso) return null;
@@ -51,17 +104,23 @@
   function fillCategories() {
     if (!select) return;
     API.categories().then(function (rows) {
+      renderGrille(rows);
       rows.forEach(function (c) {
+        CATS[c.code] = c;
         var opt = document.createElement('option');
         opt.value = c.code;
-        opt.textContent = c.age_range ? c.name + ' (' + c.age_range + ')' : c.name;
+        var label = c.name;
+        if (c.birth_years) label += ' — ' + c.birth_years;
+        if (c.price_cents != null) label += ' — ' + euros(c.price_cents);
+        opt.textContent = label;
         select.appendChild(opt);
       });
-      // Pré-sélection depuis categories.html : inscription.html?categorie=U13
+      // Pré-sélection depuis categories.html : inscription.html?categorie=U13M
       var wanted = new URLSearchParams(window.location.search).get('categorie');
       if (wanted && select.querySelector('option[value="' + CSS.escape(wanted) + '"]')) {
         select.value = wanted;
       }
+      showTarif();
     }).catch(function () {
       /* Le formulaire reste utilisable : la catégorie devient facultative. */
       select.removeAttribute('required');
@@ -148,6 +207,7 @@
     }).then(function () {
       form.reset();
       if (blocResp) blocResp.hidden = true;
+      showTarif();
       setMsg('success',
         'Demande envoyée. Le secrétariat du club vous recontacte pour convenir d\'un entraînement d\'essai ' +
         'et vous transmettre le dossier de licence.');
@@ -226,6 +286,7 @@
   /* ------------------------------------------------------ Démarrage ----- */
 
   fillCategories();
+  if (select) select.addEventListener('change', showTarif);
   if (champNaissance) champNaissance.addEventListener('change', toggleGuardian);
   if (form) form.addEventListener('submit', handleSubmit);
   renderQR(qrTarget());
