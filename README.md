@@ -158,12 +158,14 @@ le badge « nouveau ».
   en `fetch`. Le back-office charge `supabase-js` (auth + Storage), lui aussi auto-hébergé.
 - **QR code généré côté client** (`qrcode-generator`, MIT), rendu en SVG aux couleurs du club
   et téléchargeable en SVG pour l'impression. Aucun service tiers, aucune clé d'API.
-  Il encode l'adresse **du site depuis lequel la page est consultée** (`siteUrl` vide dans
-  `js/config.js`), avec le paramètre `?qr=1` : les demandes venues d'un flyer sont donc
-  enregistrées avec `source = 'qr-code'` dans la table `inscriptions`.
-  Le jour où basketclubvillepinte.com sera branché sur Vercel, renseigner `siteUrl` pour
-  figer l'adresse imprimée. **Ne pas imprimer de flyers avant cette bascule** : le QR
-  encoderait l'adresse `.vercel.app`.
+  L'adresse encodée se règle dans `js/config.js` (clé `qrUrl`) — actuellement
+  `https://basket-club-villepinte.vercel.app/inscription`. Le paramètre `?qr=1` y est
+  ajouté automatiquement : les demandes venues d'un flyer sont enregistrées avec
+  `source = 'qr-code'` dans la table `inscriptions`, ce qui permet de mesurer le
+  rendement des affiches. L'ancre `#formulaire` fait arriver directement sur le formulaire.
+  **À mettre à jour** le jour où basketclubvillepinte.com sera branché sur Vercel :
+  les flyers déjà imprimés continueront de fonctionner (Vercel garde l'adresse
+  `.vercel.app` active), mais les nouveaux porteront le bon domaine.
 - **Cache des assets.** Les polices sont mises en cache un an (`immutable`) : leur nom
   et leur contenu ne changent jamais. Les images, elles, gardent le même nom d'un
   déploiement à l'autre — elles sont donc servies avec `max-age=86400, must-revalidate`,

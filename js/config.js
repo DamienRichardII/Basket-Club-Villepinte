@@ -11,12 +11,9 @@ window.BCV_CONFIG = {
   supabaseKey: 'sb_publishable_gIa16lV_YOyCIGHSPa8mtg_P5GRvmuv',
 
   // Adresse encodée dans le QR code de la page inscription.
+  // C'est cette adresse qui sera imprimée sur les flyers et les affiches.
   //
-  // Laissé VIDE : le QR pointe automatiquement vers l'adresse depuis laquelle la
-  // page est consultée. Il fonctionne donc aujourd'hui sur le domaine Vercel, et
-  // suivra tout seul la bascule vers basketclubvillepinte.com.
-  //
-  // À renseigner (ex. 'https://www.basketclubvillepinte.com') le jour où le domaine
-  // définitif sera branché, pour figer l'adresse imprimée sur les flyers.
-  siteUrl: ''
+  // Laisser vide pour utiliser automatiquement l'adresse de la page consultée.
+  // À mettre à jour le jour où basketclubvillepinte.com sera branché sur Vercel.
+  qrUrl: 'https://basket-club-villepinte.vercel.app/inscription'
 };

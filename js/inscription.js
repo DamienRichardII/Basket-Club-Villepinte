@@ -276,11 +276,17 @@
     }
   }
 
+  /**
+   * Adresse encodée dans le QR code.
+   * Base : BCV_CONFIG.qrUrl, ou l'adresse de la page courante si elle est vide.
+   * On y ajoute ?qr=1 (les demandes venues d'un flyer sont enregistrées avec
+   * source = 'qr-code') et l'ancre #formulaire (arrivée directe sur le formulaire).
+   */
   function qrTarget() {
-    var base = (window.BCV_CONFIG && window.BCV_CONFIG.siteUrl) || '';
-    if (base) return base.replace(/\/+$/, '') + '/inscription.html?qr=1#formulaire';
-    // Repli : URL de la page courante (utile en pré-production)
-    return window.location.origin + window.location.pathname + '?qr=1#formulaire';
+    var base = ((window.BCV_CONFIG && window.BCV_CONFIG.qrUrl) || '').trim();
+    if (!base) base = window.location.origin + window.location.pathname;
+    base = base.replace(/[?#].*$/, '').replace(/\/+$/, '');
+    return base + '?qr=1#formulaire';
   }
 
   /* ------------------------------------------------------ Démarrage ----- */
