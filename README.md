@@ -71,6 +71,16 @@ la sécurité repose entièrement sur les politiques RLS.
 Un compte n'est administrateur que s'il figure dans la table `public.admins`.
 Créer un compte via Supabase Auth ne donne **aucun** droit d'écriture.
 
+Deux comptes sont déclarés (droits identiques, il n'y a pas de niveaux) :
+
+| Compte | Rôle |
+|---|---|
+| `damien.miyouna@gmail.com` | DamCompany — développeur |
+| `bcvillepinte93@gmail.com` | Jean-Georges — président du club |
+
+Les mots de passe ne figurent pas ici : ils se réinitialisent depuis l'écran de
+connexion ou depuis Supabase Studio.
+
 ### Ajouter un administrateur
 
 1. Supabase Studio → **Authentication → Users → Add user** (cocher « Auto Confirm User »).
@@ -148,6 +158,12 @@ le badge « nouveau ».
   en `fetch`. Le back-office charge `supabase-js` (auth + Storage), lui aussi auto-hébergé.
 - **QR code généré côté client** (`qrcode-generator`, MIT), rendu en SVG aux couleurs du club
   et téléchargeable en SVG pour l'impression. Aucun service tiers, aucune clé d'API.
+  Il encode l'adresse **du site depuis lequel la page est consultée** (`siteUrl` vide dans
+  `js/config.js`), avec le paramètre `?qr=1` : les demandes venues d'un flyer sont donc
+  enregistrées avec `source = 'qr-code'` dans la table `inscriptions`.
+  Le jour où basketclubvillepinte.com sera branché sur Vercel, renseigner `siteUrl` pour
+  figer l'adresse imprimée. **Ne pas imprimer de flyers avant cette bascule** : le QR
+  encoderait l'adresse `.vercel.app`.
 - **Cache des assets.** Les polices sont mises en cache un an (`immutable`) : leur nom
   et leur contenu ne changent jamais. Les images, elles, gardent le même nom d'un
   déploiement à l'autre — elles sont donc servies avec `max-age=86400, must-revalidate`,
