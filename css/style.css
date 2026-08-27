@@ -484,13 +484,29 @@ ul { margin: 0; padding: 0; list-style: none; }
 .step p { font-size: .94rem; color: var(--ink-soft); }
 
 /* Cartes boutique */
-.product { background: var(--white); color: var(--ink); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; }
+.product {
+  background: var(--white); color: var(--ink); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-card);
+  display: flex; flex-direction: column;
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+}
+.product:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+
 .product__media {
   aspect-ratio: 4 / 3; display: grid; place-items: center;
   background: linear-gradient(160deg, var(--cream), var(--cream-dark));
   padding: 22px;
+  overflow: hidden;                      /* le zoom reste contenu dans la vignette */
 }
-.product__media img, .product__media svg { width: min(60%, 150px); height: auto; }
+.product__media img, .product__media svg {
+  width: min(60%, 150px); height: auto;
+  transition: transform .35s var(--ease);
+}
+/* Loupe au survol et au focus clavier, pour examiner le marquage du blason */
+.product:hover .product__media img,
+.product:hover .product__media svg,
+.product:focus-within .product__media img,
+.product:focus-within .product__media svg { transform: scale(1.35); }
 .product__body { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
 .product__name { font-family: var(--font-display); text-transform: uppercase; font-size: 1.02rem; }
 .product__desc { font-size: .88rem; color: var(--ink-soft); margin: 0; }

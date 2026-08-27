@@ -69,18 +69,24 @@ l'ancien site), il faut les noms complets, les diplômes et les équipes encadr�
 
 ## 3. Boutique
 
-Les 24 articles de la collection officielle sont en ligne avec leurs visuels et
-leurs caractéristiques techniques, **sans prix**.
+Les 24 articles de la collection officielle sont en ligne avec leurs visuels,
+leurs caractéristiques techniques et leurs tarifs.
 
-**Pourquoi sans prix :** les montants de la brochure Upset Sports sont des prix
-d'achat groupé par le club, dégressifs selon la quantité commandée
-(« moins de 50 pcs », « plus de 100 pcs »). Ce ne sont pas des prix de vente aux
-familles. Les afficher tels quels induirait les parents en erreur.
+**Quel prix est affiché :** la brochure Upset Sports donne 2 ou 3 paliers dégressifs
+selon la quantité commandée par le club (« moins de 50 pcs », « plus de 100 pcs »).
+C'est le **premier palier** — le plus élevé — qui est affiché, pour que le club ne
+vende jamais en dessous de son prix d'achat. Chaque fiche porte le badge
+« Tarif indicatif », et un message en haut de page explique que le montant peut
+baisser selon le volume de la commande groupée.
+
+**À valider par le bureau :** ces montants sont des prix d'achat, sans marge. Si le
+club veut financer une part de son fonctionnement sur la boutique, il faut définir
+une marge et saisir les prix de vente réels.
 
 **Pour ouvrir la vente**, article par article, onglet **Boutique** :
 
-1. saisir le prix de vente public dans « Prix (€) » ;
-2. décocher « Tarif indicatif » ;
+1. ajuster le prix dans « Prix (€) » si le club applique une marge ;
+2. décocher « Tarif indicatif » une fois le prix définitif ;
 3. coller le lien de paiement (HelloAsso, Stripe, SumUp…) dans « Lien paiement » ;
 4. cocher « En vente ».
 

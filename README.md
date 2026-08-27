@@ -133,8 +133,8 @@ le badge « nouveau ».
   détourées automatiquement puis normalisées en WebP 560×560 sur fond transparent.
   Les articles blancs (chaussettes, gourde, gobelet) ont demandé un détourage par
   détection de contour, le seuillage par couleur étant inopérant sur blanc/gris.
-  Les prix de la brochure sont des tarifs d'achat groupé dégressifs : ils ne sont
-  **pas** affichés comme prix de vente.
+  Les prix de la brochure sont des tarifs d'achat groupé dégressifs : c'est le
+  premier palier (le plus élevé) qui est affiché, marqué « Tarif indicatif ».
 
 ---
 
