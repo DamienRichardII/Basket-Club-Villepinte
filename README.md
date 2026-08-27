@@ -148,6 +148,12 @@ le badge « nouveau ».
   en `fetch`. Le back-office charge `supabase-js` (auth + Storage), lui aussi auto-hébergé.
 - **QR code généré côté client** (`qrcode-generator`, MIT), rendu en SVG aux couleurs du club
   et téléchargeable en SVG pour l'impression. Aucun service tiers, aucune clé d'API.
+- **Cache des assets.** Les polices sont mises en cache un an (`immutable`) : leur nom
+  et leur contenu ne changent jamais. Les images, elles, gardent le même nom d'un
+  déploiement à l'autre — elles sont donc servies avec `max-age=86400, must-revalidate`,
+  sinon un visuel remplacé resterait bloqué jusqu'à un an dans le navigateur des visiteurs.
+  Si un visuel doit être rafraîchi immédiatement chez tout le monde, ajouter un paramètre
+  de version à son URL (`...webp?v=2`) dans le champ « Photo » du back-office.
 - **Header et pied de page dupliqués dans chaque page** : choix assumé pour rester en HTML
   statique pur (bon pour le SEO, pas de flash au chargement). Une modification du menu ou
   du pied de page doit être répercutée dans les 9 fichiers `.html`.
