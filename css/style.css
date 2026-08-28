@@ -12,6 +12,7 @@
      06. Footer
      07. Hero (accueil + pages intérieures)
      08. Bandeau de chiffres clés
+     08b. Bande des partenaires
      09. Cartes (aperçu, catégories, boutique, étapes)
      09b. Planning des entraînements
      09c. Grille tarifaire
@@ -433,6 +434,57 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-family: var(--font-cond); text-transform: uppercase; letter-spacing: .2em;
   font-weight: 600; font-size: .72rem; color: rgba(255,255,255,.72);
   margin-top: 10px; display: block;
+}
+
+/* == 08b. BANDE DES PARTENAIRES ========================================= */
+/* Défilement continu : la piste contient 5 groupes de logos identiques et se
+   déplace de -20 %, soit exactement la largeur d'un groupe. À la fin du cycle
+   l'image est donc rigoureusement la même qu'au départ : la boucle est
+   invisible, sans saut ni temps mort. */
+.sponsors {
+  background: var(--cream);
+  border-block: 1px solid rgba(14, 32, 80, .1);
+  padding-block: 16px;
+  overflow: hidden;
+}
+
+.sponsors__viewport {
+  overflow: hidden;
+  /* Les logos entrent et sortent en fondu au lieu d'être coupés net */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.sponsors__track {
+  display: flex;
+  width: max-content;
+  animation: sponsors-scroll 24s linear infinite;
+}
+
+.sponsors__group { display: flex; align-items: center; }
+
+.sponsors__logo {
+  flex: none;
+  height: 46px; width: auto; max-width: 170px;
+  object-fit: contain;
+  margin-inline: 26px;
+}
+
+@keyframes sponsors-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-20%, 0, 0); }
+}
+
+@media (min-width: 900px) {
+  .sponsors { padding-block: 22px; }
+  .sponsors__logo { height: 58px; max-width: 210px; margin-inline: 42px; }
+}
+
+/* Mouvement réduit : la bande se fige. Les groupes étant identiques, l'arrêt
+   se fait sur une image correcte quelle que soit la position. (Voir aussi la
+   règle globale prefers-reduced-motion en fin de fichier.) */
+@media (prefers-reduced-motion: reduce) {
+  .sponsors__track { animation: none; }
 }
 
 /* == 09. CARTES ========================================================== */

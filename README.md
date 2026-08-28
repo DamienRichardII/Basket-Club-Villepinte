@@ -46,6 +46,7 @@ js/vendor/               qrcode-generator (MIT) + supabase-js (MIT), auto-héber
 
 assets/img/              Logo, favicons
 assets/img/boutique/     24 visuels d'articles détourés depuis la brochure fournisseur
+assets/img/sponsors/     4 logos de partenaires détourés sur fond transparent
 assets/fonts/            Anton + Barlow (woff2, SIL OFL)
 
 supabase/schema.sql      Schéma complet + politiques RLS + bucket Storage
@@ -121,7 +122,20 @@ Un réseau social laissé vide dans les réglages est automatiquement masqué su
 
 ---
 
-## 5. Emails de confirmation
+## 5. Ajouter ou retirer un partenaire
+
+Les logos sont en dur dans `index.html` (les partenaires changent une fois par saison,
+cela ne justifiait pas une table en base). Pour en ajouter un :
+
+1. detourer le logo sur fond transparent, hauteur 240 px, l'enregistrer en WebP dans
+   `assets/img/sponsors/` ;
+2. dans `index.html`, ajouter la ligne `<img class="sponsors__logo" ...>` **dans les cinq
+   groupes** `.sponsors__group` (ils doivent rester identiques, sinon la boucle saute) ;
+3. ajouter le nom du partenaire dans la liste `sr-only` juste au-dessus.
+
+---
+
+## 6. Emails de confirmation
 
 `supabase/functions/send-inscription-email/index.ts` est **écrit mais non déployé**.
 Le mode d'emploi (3 commandes) figure en tête du fichier. Aujourd'hui, une demande
@@ -130,7 +144,7 @@ le badge « nouveau ».
 
 ---
 
-## 6. Origine des données
+## 7. Origine des données
 
 - **Catégories et planning** — fichier `planningentrainement.xlsx` fourni par le club,
   feuille « Planning 2027 » (répartition réelle par gymnase). Cette feuille contredit
@@ -148,7 +162,7 @@ le badge « nouveau ».
 
 ---
 
-## 7. Choix techniques
+## 8. Choix techniques
 
 - **Aucune dépendance externe au chargement.** Polices et librairies sont auto-hébergées :
   pas d'appel à Google Fonts ni à un CDN, donc aucune adresse IP de visiteur transmise
@@ -166,6 +180,14 @@ le badge « nouveau ».
   **À mettre à jour** le jour où basketclubvillepinte.com sera branché sur Vercel :
   les flyers déjà imprimés continueront de fonctionner (Vercel garde l'adresse
   `.vercel.app` active), mais les nouveaux porteront le bon domaine.
+- **Bande des partenaires** (accueil, entre le hero et le bandeau de chiffres).
+  Défilement CSS pur, sans JavaScript : la piste contient **5 groupes de logos
+  identiques** et se déplace de `-20 %`, soit exactement la largeur d'un groupe.
+  À la fin du cycle l'image est rigoureusement la même qu'au départ — la boucle est
+  donc invisible, sans saut ni temps mort. Les groupes en réserve couvrent plus de
+  deux largeurs d'écran, il ne peut jamais y avoir de blanc.
+  La piste animée porte `aria-hidden` (elle répète cinq fois les mêmes logos) et une
+  liste `sr-only` donne les noms des partenaires aux lecteurs d'écran.
 - **Cache des assets.** Les polices sont mises en cache un an (`immutable`) : leur nom
   et leur contenu ne changent jamais. Les images, elles, gardent le même nom d'un
   déploiement à l'autre — elles sont donc servies avec `max-age=86400, must-revalidate`,
@@ -178,7 +200,7 @@ le badge « nouveau ».
 
 ---
 
-## 8. Vérifications effectuées
+## 9. Vérifications effectuées
 
 - Rendu desktop (1440 px), tablette (768 px) et mobile (360-390 px) sur les 8 pages publiques
   + le back-office.
