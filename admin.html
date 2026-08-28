@@ -230,6 +230,23 @@
 
     <!-- ------------------------------------------------------ INSCRIPTIONS -->
     <section class="a-panel" data-panel="inscriptions" role="tabpanel" aria-label="Inscriptions">
+
+      <!-- Qui reçoit les demandes par email -->
+      <div class="a-card">
+        <div class="a-card__head">
+          <h2>Notification par email</h2>
+          <p>Chaque nouvelle demande part automatiquement par email vers les adresses
+             ci-dessous, en plus d'apparaître dans le tableau. Décocher « Actif »
+             suspend l'envoi vers une adresse sans la supprimer.
+             Ces adresses ne sont visibles que des administrateurs, jamais du public.</p>
+          <div class="a-card__actions">
+            <button class="a-btn a-btn--ghost" type="button" data-add="notification_recipients">Ajouter une adresse</button>
+            <button class="a-btn a-btn--gold" type="button" data-save="notification_recipients">Enregistrer</button>
+          </div>
+        </div>
+        <div class="a-table-wrap"><table class="a-table" id="table-notification_recipients"></table></div>
+      </div>
+
       <div class="a-card">
         <div class="a-card__head">
           <h2>Demandes de pré-inscription</h2>

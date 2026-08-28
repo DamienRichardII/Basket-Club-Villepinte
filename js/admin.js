@@ -155,6 +155,16 @@ const SCHEMAS = {
     blank: () => ({ venue: '', team_label: '', weekday: 1, time_label: '',
                     sort_order: 99, is_published: true })
   },
+  notification_recipients: {
+    label: 'adresse',
+    order: 'email',
+    fields: [
+      { key: 'email',     label: 'Adresse email', type: 'text' },
+      { key: 'full_name', label: 'Personne',      type: 'text' },
+      { key: 'is_active', label: 'Actif',         type: 'check', width: '76px' }
+    ],
+    blank: () => ({ email: '', full_name: '', is_active: true })
+  },
   shop_products: {
     label: 'article',
     order: 'sort_order',
@@ -535,7 +545,10 @@ async function loadInscriptions() {
     inscriptions.map((i) => `
       <tr>
         <td>${new Date(i.created_at).toLocaleDateString('fr-FR')}<br>
-            <span class="a-badge ${i.status === 'nouveau' ? 'a-badge--new' : i.status === 'traite' ? 'a-badge--done' : ''}">${escapeHtml(i.status)}</span></td>
+            <span class="a-badge ${i.status === 'nouveau' ? 'a-badge--new' : i.status === 'traite' ? 'a-badge--done' : ''}">${escapeHtml(i.status)}</span>
+            ${i.notified_at
+                ? `<br><span class="a-sent" title="Notification envoyée le ${new Date(i.notified_at).toLocaleString('fr-FR')}">\u2709 envoyée</span>`
+                : `<br><span class="a-sent a-sent--ko" title="Aucun email de notification n'est parti pour cette demande.">\u2709 non envoyée</span>`}</td>
         <td><strong>${escapeHtml(i.first_name)} ${escapeHtml(i.last_name)}</strong></td>
         <td>${i.birth_date ? new Date(i.birth_date).toLocaleDateString('fr-FR') : '—'}</td>
         <td>${escapeHtml(i.category_code || '—')}</td>

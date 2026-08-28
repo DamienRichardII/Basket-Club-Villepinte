@@ -50,7 +50,8 @@ assets/img/sponsors/     4 logos de partenaires détourés sur fond transparent
 assets/fonts/            Anton + Barlow (woff2, SIL OFL)
 
 supabase/schema.sql      Schéma complet + politiques RLS + bucket Storage
-supabase/functions/      Edge Function d'email de confirmation (prête, non déployée)
+supabase/schema-notifications.sql  Notification email des inscriptions (déclencheur + table)
+supabase/functions/      Edge Function d'envoi des emails (déployée)
 
 docs/CONTENU-A-FOURNIR.md  Ce que le club doit encore transmettre
 ```
@@ -68,6 +69,7 @@ la sécurité repose entièrement sur les politiques RLS.
 | `categories`, `honours`, `timeline_events`, `shop_products`, `training_slots` | publique (si `is_published`) | admin |
 | `site_settings`, `media_assets` | publique | admin |
 | `inscriptions` | **admin uniquement** | publique (consentement obligatoire) |
+| `notification_recipients` | **admin uniquement** | **admin uniquement** |
 
 Un compte n'est administrateur que s'il figure dans la table `public.admins`.
 Créer un compte via Supabase Auth ne donne **aucun** droit d'écriture.
@@ -117,6 +119,10 @@ Sept onglets :
 - **Réglages** — coordonnées, horaires, gymnases, réseaux sociaux, chiffres clés de l'accueil,
   textes des étapes d'inscription. Tout ce qui est modifiable sans toucher au code est ici.
 - **Inscriptions** — demandes reçues, changement de statut, export CSV.
+  En haut de l'onglet, le bloc « Notification par email » liste les adresses qui
+  reçoivent chaque nouvelle demande : en ajouter une, la désactiver ou la
+  supprimer ne demande aucune intervention technique. Chaque ligne du tableau
+  porte un témoin ✉ indiquant si l'email est bien parti.
 
 Un réseau social laissé vide dans les réglages est automatiquement masqué sur le site.
 
@@ -135,12 +141,66 @@ cela ne justifiait pas une table en base). Pour en ajouter un :
 
 ---
 
-## 6. Emails de confirmation
+## 6. Emails des inscriptions
 
-`supabase/functions/send-inscription-email/index.ts` est **écrit mais non déployé**.
-Le mode d'emploi (3 commandes) figure en tête du fichier. Aujourd'hui, une demande
-d'inscription affiche une confirmation à l'écran et apparaît dans le back-office avec
-le badge « nouveau ».
+Chaque demande de pré-inscription part par email vers les adresses déclarées dans
+le back-office (onglet **Inscriptions** → « Notification par email »), **en plus**
+d'apparaître dans le tableau.
+
+### La chaîne
+
+```
+formulaire du site
+  → insertion dans `inscriptions`
+  → déclencheur SQL `inscriptions_notify`      (supabase/schema-notifications.sql)
+  → Edge Function `notify-inscription`         (supabase/functions/)
+  → envoi via Resend
+  → horodatage dans `inscriptions.notified_at`
+```
+
+L'appel est **asynchrone** et le déclencheur avale ses propres erreurs : un
+problème d'email ne peut jamais faire échouer une inscription. Si l'envoi ne part
+pas, la demande est quand même enregistrée, visible dans le back-office, et son
+témoin ✉ reste sur « non envoyée ». Rien ne peut être perdu.
+
+### Ce qu'il reste à renseigner (une seule fois, sans ligne de commande)
+
+Le code et la base sont en place. Il manque deux valeurs, à saisir dans
+**Supabase Studio → Edge Functions → notify-inscription → Secrets** :
+
+| Secret | Valeur |
+|---|---|
+| `RESEND_API_KEY` | la clé API d'un compte [resend.com](https://resend.com) (offre gratuite : 3 000 emails/mois) |
+| `BCV_HOOK_SECRET` | exactement la valeur du secret `bcv_hook_secret` du Vault (Studio → Integrations → Vault) |
+
+Tant que `RESEND_API_KEY` est absente, la fonction répond « no_api_key » et
+n'envoie rien : le site continue de fonctionner normalement.
+
+**Sans nom de domaine**, l'expéditeur par défaut `onboarding@resend.dev` de Resend
+n'écrit qu'à l'adresse du titulaire du compte Resend. Il faut donc **créer le
+compte Resend avec l'adresse qui doit recevoir les inscriptions**. C'est suffisant
+pour démarrer.
+
+Le jour où `basketclubvillepinte.com` est branché et vérifié chez Resend, ajouter
+deux secrets de plus :
+
+| Secret | Valeur |
+|---|---|
+| `MAIL_FROM` | `BCV93 <inscriptions@basketclubvillepinte.com>` |
+| `MAIL_CONFIRM_FAMILY` | `true` pour envoyer aussi l'accusé de réception à la famille |
+
+### Diagnostic
+
+```sql
+-- réponses des derniers appels sortants
+select id, status_code, content, error_msg, created
+  from net._http_response order by created desc limit 10;
+```
+
+`503 hook_secret_not_configured` = `BCV_HOOK_SECRET` pas encore saisi ·
+`403 forbidden` = les deux secrets ne correspondent pas ·
+`200 {"skipped":"no_api_key"}` = clé Resend manquante ·
+`200 {"notified":true}` = email parti.
 
 ---
 

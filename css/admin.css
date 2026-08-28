@@ -179,6 +179,13 @@ h1, h2, h3 { margin: 0; line-height: 1.2; }
 .a-badge--new { background: var(--a-gold); color: var(--a-navy-dark); }
 .a-badge--done { background: #d8f0e2; color: var(--a-green); }
 
+/* Témoin d'envoi de la notification email (onglet Inscriptions). */
+.a-sent {
+  display: inline-block; margin-top: 4px;
+  font-size: .72rem; font-weight: 600; color: var(--a-green);
+}
+.a-sent--ko { color: var(--a-muted); }
+
 .a-msg { padding: 11px 14px; border-radius: var(--a-radius); font-size: .88rem; margin-bottom: 14px; display: none; }
 .a-msg[data-state] { display: block; }
 .a-msg[data-state="success"] { background: #d8f0e2; color: #12603a; }

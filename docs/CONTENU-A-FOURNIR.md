@@ -119,13 +119,39 @@ Un encadré signale ces manques sur la page `mentions-legales.html`.
 
 ## 5. Réseaux sociaux
 
-- Instagram : branché — `instagram.com/basketclubvillepinte93`
+- Instagram : branché — `instagram.com/teambcv93`
 - Facebook et WhatsApp : champs vides dans **Réglages** → les boutons sont
   automatiquement masqués. Coller l'URL suffit à les faire apparaître.
 
 ---
 
-## 6. Documents PDF de l'ancien site
+## 6. Emails d'inscription — une clé à fournir
+
+Chaque demande de pré-inscription doit partir par email vers le club. Toute la
+chaîne est en place (déclencheur en base, fonction d'envoi déployée, liste des
+destinataires éditable dans le back-office). Il manque **une clé API d'envoi**.
+
+**À faire, une fois :**
+
+1. créer un compte gratuit sur [resend.com](https://resend.com) — important :
+   **avec l'adresse email qui doit recevoir les inscriptions**, car sans nom de
+   domaine vérifié, Resend n'écrit qu'à l'adresse du titulaire du compte ;
+2. copier la clé API générée ;
+3. la coller dans Supabase Studio → **Edge Functions → notify-inscription →
+   Secrets**, sous le nom `RESEND_API_KEY`, avec le secret `BCV_HOOK_SECRET`
+   (procédure détaillée dans le README, § 6).
+
+Tant que ce n'est pas fait, **aucune demande n'est perdue** : elles arrivent
+toutes dans l'onglet **Inscriptions** du back-office, avec un témoin ✉
+« non envoyée ».
+
+**Destinataires :** l'adresse `bcvillepinte93@gmail.com` est déjà déclarée.
+Pour en ajouter (chef de projet, secrétariat, entraîneur référent) :
+back-office → onglet **Inscriptions** → bloc « Notification par email ».
+
+---
+
+## 7. Documents PDF de l'ancien site
 
 Hébergés chez Wix, **ils cesseront d'être accessibles à la bascule du domaine**.
 À récupérer et réhéberger (onglet **Médias**) :
