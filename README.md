@@ -206,10 +206,14 @@ select id, status_code, content, error_msg, created
 
 ## 7. Origine des données
 
-- **Catégories et planning** — fichier `planningentrainement.xlsx` fourni par le club,
-  feuille « Planning 2027 » (répartition réelle par gymnase). Cette feuille contredit
-  la feuille « Catégories » sur trois lignes : les écarts sont documentés dans
-  `docs/CONTENU-A-FOURNIR.md`, et c'est la feuille Planning qui fait foi partout.
+- **Catégories et planning** — document **« Planning Provisoire à Valider »** transmis
+  par le président le 1er septembre 2026, qui remplace le `planningentrainement.xlsx`
+  initial. Il scinde les U11 en Filles / Garçons, déplace les U15 Filles au Cosec et
+  redistribue les créneaux du soir. Trois contradictions subsistent (U18M/U21M dans
+  deux gymnases à la même heure, fusion U21/Séniors, Séniors Filles absentes) :
+  les arbitrages retenus sont documentés dans `docs/CONTENU-A-FOURNIR.md`.
+  Le planning étant provisoire, un bandeau le signale sur la page Catégories —
+  il se retire depuis **Réglages → Planning des entraînements**.
 - **Tarifs des licences** — grille « Tarifs saison 2026-2027 » fournie par le club.
   L'académie U13-U15 n'y figure pas : elle affiche « Sur demande ».
 - **Boutique** — brochure Upset Sports. Seuls les visuels portant le blason de

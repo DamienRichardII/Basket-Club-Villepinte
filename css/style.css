@@ -41,6 +41,10 @@
   --gold-300: #e6d089;   /* numéros d'étape, aplats discrets */
   --gold-olive: #8c8137; /* vagues décoratives du hero */
 
+  /* Pictogramme « information » du bandeau de planning, en data-URI :
+     aucun fichier supplémentaire à charger. */
+  --icon-info: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 4.4a1.4 1.4 0 110 2.8 1.4 1.4 0 010-2.8zM13.4 18h-2.8v-7.2h2.8V18z"/></svg>');
+
   --red-600: #c8281f;    /* accents : sur-titres, tranches d'âge */
   --red-700: #a41d16;
 
@@ -629,6 +633,28 @@ ul { margin: 0; padding: 0; list-style: none; }
     font-weight: 600; font-size: .74rem; color: var(--red-600); flex: none;
   }
   .slot { text-align: right; }
+}
+
+/* Bandeau au-dessus du planning (Réglages → Planning).
+   Vidé dans le back-office, il disparaît de la page : voir data-setting-required. */
+.planning-notice {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin: 0 0 26px;
+  padding: 15px 18px;
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-left: 4px solid var(--gold-500);
+  border-radius: 10px;
+  color: var(--ink-soft);
+  font-size: .94rem; line-height: 1.55;
+}
+.planning-notice::before {
+  content: "";
+  flex: none; width: 18px; height: 18px; margin-top: 2px;
+  background: var(--gold-600);
+  /* pictogramme « information », en masque pour rester monochrome */
+  -webkit-mask: var(--icon-info) center / contain no-repeat;
+          mask: var(--icon-info) center / contain no-repeat;
 }
 
 /* == 09c. GRILLE TARIFAIRE (page inscription) ============================ */

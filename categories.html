@@ -74,9 +74,13 @@
     <div class="section__head">
       <p class="eyebrow">Saison 2026-2027</p>
       <h2 class="h2">Planning des entraînements</h2>
-      <p class="lead">Les créneaux hebdomadaires de chaque équipe, gymnase par gymnase.
-      Planning provisoire : il peut évoluer en début de saison.</p>
+      <p class="lead">Les créneaux hebdomadaires de chaque équipe, gymnase par gymnase.</p>
     </div>
+
+    <!-- Bandeau piloté depuis le back-office (Réglages → Planning).
+         Champ vidé = bandeau retiré de la page, sans toucher au code. -->
+    <p class="planning-notice" data-setting="planning_notice" data-setting-required data-setting-multiline>Planning provisoire du 1er septembre 2026, en attente de validation par le bureau. Les créneaux peuvent encore évoluer en début de saison.</p>
+
     <div id="planning-entrainements">
       <div class="skeleton" style="min-height:240px"></div>
     </div>

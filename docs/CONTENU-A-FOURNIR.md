@@ -10,24 +10,57 @@ sans intervention technique.
 
 ## 1. Points à trancher — ils bloquent une information déjà en ligne
 
-### Séniors Filles : créneaux contradictoires
+Le site affiche depuis le 1er septembre 2026 le **planning provisoire** transmis par
+Jean-Georges (document « Planning Provisoire à Valider »). Un bandeau le signale
+au-dessus de la grille ; il se retire depuis **Réglages → Planning des entraînements**
+le jour où le bureau valide.
 
-Le fichier Excel se contredit entre ses deux feuilles :
+### U18 Garçons et U21 Garçons : deux gymnases aux mêmes heures
 
-- feuille **Planning 2027** (répartition par gymnase) : aucune ligne SF ;
-- feuille **Catégories** : SF au gymnase André Mariage, mercredi 19h-20h30 et
-  vendredi 18h-20h — soit **exactement le créneau attribué aux U15 Filles** dans
-  la feuille Planning.
+Le document leur donne des créneaux au Cosec (mercredi 19h30-21h, vendredi 21h-22h30)
+**et** à André Mariage (mercredi 20h30-22h, vendredi 20h-22h) — impossible.
+Choix retenu : **André Mariage l'emporte** le mercredi et le vendredi, les créneaux
+correspondants du Cosec ont été retirés. Il reste aux U18M leur lundi 21h-22h30 au
+Cosec, et aux U21M leurs mardi et jeudi. **À confirmer.**
 
-C'est la feuille Planning qui a été retenue pour tout le site. La catégorie SF
-affiche donc « Créneaux à confirmer par le club » plutôt qu'un horaire douteux.
-**À confirmer :** l'équipe SF existe-t-elle cette saison, et à quels créneaux ?
+### U21 et Séniors : une seule ligne pour trois équipes
 
-### Décalage U18M / U15F entre les deux feuilles
+Le document fusionne U21, SG1 et SG2 sur mardi / jeudi / vendredi.
+Choix retenu : **l'équipe première (SG1) reste séparée** sur mardi et jeudi 21h-22h30
+avec Houssen, comme aujourd'hui. U21M et SG2 prennent les créneaux du document.
+Conséquence : les trois équipes se retrouvent au Cosec le mardi de 21h à 22h30.
+**À confirmer** — si l'équipe première doit avoir le gymnase pour elle, il faut un
+créneau distinct.
 
-Même cause : la feuille **Catégories** attribue à U18M le créneau que la feuille
-**Planning** donne à U15F, et à U15F celui de U13F. La feuille Planning a été
-retenue partout. À vérifier au moment de figer le planning définitif.
+### Séniors Filles : toujours absentes
+
+Ni dans la feuille Planning d'origine, ni dans ce nouveau document. La catégorie
+existe sur le site et affiche « Créneaux à confirmer par le club ».
+**L'équipe existe-t-elle cette saison, et à quels créneaux ?**
+
+### U11 : catégorie scindée
+
+Le nouveau planning distingue U11 Filles et U11 Garçons, avec des horaires différents.
+Deux catégories ont donc été créées, au même tarif qu'avant (230 €).
+L'ancienne catégorie « U11 Mixte » est conservée hors ligne : **une pré-inscription y
+fait référence**, son libellé doit rester lisible dans le back-office.
+À la reprise de contact avec cette famille, reclasser la demande en U11F ou U11M.
+
+### « SC » devant Luxon
+
+Le document écrit « SC -Luxon » pour les U11. Faute d'explication, seul **Luxon** est
+affiché. S'il s'agit d'un second éducateur, donner son nom.
+
+### Didier
+
+Nouveau nom dans le planning (U13 Garçons), absent des fichiers précédents.
+Nom complet et diplôme à fournir si une page « Éducateurs » est créée.
+
+### U13 Garçons : une seule séance
+
+Le document ne leur laisse que le mardi 18h-19h30 ; leur créneau du vendredi est repris
+par les U15 Filles. **Volontaire ?** Une seule séance par semaine pour une équipe en
+compétition mérite d'être confirmée.
 
 ### Tarif de l'Académie U13-U15
 

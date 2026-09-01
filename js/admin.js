@@ -477,6 +477,7 @@ const GROUP_LABELS = {
   chiffres: 'Chiffres clés (page d\'accueil)',
   inscription: 'Page inscription',
   boutique: 'Page boutique',
+  planning: 'Planning des entraînements',
   documents: 'Documents'
 };
 
