@@ -207,8 +207,8 @@ select id, status_code, content, error_msg, created
 ## 7. Origine des données
 
 - **Catégories et planning** — document **« Planning Provisoire à Valider »** transmis
-  par le président le 1er septembre 2026, qui remplace le `planningentrainement.xlsx`
-  initial. Il scinde les U11 en Filles / Garçons, déplace les U15 Filles au Cosec et
+  par le président (version 2 du 2 septembre 2026), qui remplace le
+  `planningentrainement.xlsx` initial. Il scinde les U11 en Filles / Garçons, déplace les U15 Filles au Cosec et
   redistribue les créneaux du soir. Trois contradictions subsistent (U18M/U21M dans
   deux gymnases à la même heure, fusion U21/Séniors, Séniors Filles absentes) :
   les arbitrages retenus sont documentés dans `docs/CONTENU-A-FOURNIR.md`.

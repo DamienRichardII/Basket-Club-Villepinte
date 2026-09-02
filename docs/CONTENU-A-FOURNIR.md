@@ -10,10 +10,10 @@ sans intervention technique.
 
 ## 1. Points à trancher — ils bloquent une information déjà en ligne
 
-Le site affiche depuis le 1er septembre 2026 le **planning provisoire** transmis par
-Jean-Georges (document « Planning Provisoire à Valider »). Un bandeau le signale
-au-dessus de la grille ; il se retire depuis **Réglages → Planning des entraînements**
-le jour où le bureau valide.
+Le site affiche le **planning provisoire** transmis par Jean-Georges, dans sa
+**version 2 du 2 septembre 2026**. Un bandeau le signale au-dessus de la grille ;
+il se retire depuis **Réglages → Planning des entraînements** le jour où le bureau
+valide.
 
 ### U18 Garçons et U21 Garçons : deux gymnases aux mêmes heures
 
@@ -32,6 +32,17 @@ Conséquence : les trois équipes se retrouvent au Cosec le mardi de 21h à 22h3
 **À confirmer** — si l'équipe première doit avoir le gymnase pour elle, il faut un
 créneau distinct.
 
+### U18 Filles : disparues de la version 2
+
+La version 1 leur donnait André Mariage, mercredi 20h30-22h et vendredi 20h-22h.
+La version 2 **supprime purement et simplement la ligne**, alors que les U18M-U21M
+gardent exactement ces mêmes créneaux — tout indique une ligne effacée par mégarde.
+
+Choix retenu : **les créneaux de la version 1 sont conservés** sur le site. Retirer
+l'horaire d'une équipe entière sur la foi d'un oubli ferait plus de dégâts que
+l'inverse, et une pré-inscription U18 Filles est déjà arrivée.
+**À confirmer d'urgence** — c'est le point le plus sensible du document.
+
 ### Séniors Filles : toujours absentes
 
 Ni dans la feuille Planning d'origine, ni dans ce nouveau document. La catégorie
@@ -46,6 +57,13 @@ L'ancienne catégorie « U11 Mixte » est conservée hors ligne : **une pré-ins
 fait référence**, son libellé doit rester lisible dans le back-office.
 À la reprise de contact avec cette famille, reclasser la demande en U11F ou U11M.
 
+### U7 : l'année 2020 n'est rattachée à aucune catégorie
+
+La version 2 annote les années de naissance : U7 = 2021-2022, U9 = 2018-2019,
+U11 = 2016-2017. **2020 n'apparaît nulle part.** Le site continue d'afficher
+U7 = 2020 · 2021 · 2022, pour ne fermer la porte à aucun enfant.
+À trancher : les 2020 sont-ils en U7 ou en U9 ?
+
 ### « SC » devant Luxon
 
 Le document écrit « SC -Luxon » pour les U11. Faute d'explication, seul **Luxon** est
@@ -55,12 +73,6 @@ affiché. S'il s'agit d'un second éducateur, donner son nom.
 
 Nouveau nom dans le planning (U13 Garçons), absent des fichiers précédents.
 Nom complet et diplôme à fournir si une page « Éducateurs » est créée.
-
-### U13 Garçons : une seule séance
-
-Le document ne leur laisse que le mardi 18h-19h30 ; leur créneau du vendredi est repris
-par les U15 Filles. **Volontaire ?** Une seule séance par semaine pour une équipe en
-compétition mérite d'être confirmée.
 
 ### Tarif de l'Académie U13-U15
 
