@@ -69,11 +69,101 @@ $('#form-connexion').addEventListener('submit', async (e) => {
 
   btn.disabled = false;
   if (error) {
-    say($('#msg-connexion'), 'error', 'Email ou mot de passe incorrect.');
+    // GoTrue refuse la connexion tant que l'adresse n'est pas confirmée :
+    // on le dit clairement plutôt que d'accuser le mot de passe à tort.
+    var pasConfirme = /confirm/i.test(error.message || '');
+    say($('#msg-connexion'), 'error', pasConfirme
+      ? "Ce compte existe mais son adresse email n'a pas encore été confirmée. "
+        + "Cliquez sur « Renvoyer l'email de confirmation » ci-dessous, puis ouvrez le lien reçu."
+      : 'Email ou mot de passe incorrect.');
     return;
   }
   say($('#msg-connexion'), null);
   showApp(data.session);
+});
+
+/* ----------------------------------------------------------------------
+   Récupération d'accès
+   ----------------------------------------------------------------------
+   Objectif : qu'un membre du bureau puisse retrouver son accès seul, sans
+   passer par Supabase Studio ni par le développeur.
+
+   ⚠ Les deux liens envoyés par Supabase (confirmation et réinitialisation)
+   ramènent sur l'adresse déclarée dans Authentication → URL Configuration.
+   Si elle pointe encore sur localhost, le lien s'ouvre sur une page d'erreur.
+   -------------------------------------------------------------------- */
+
+/** Adresse de retour des emails Supabase : toujours cette page. */
+function retourAdmin() {
+  return window.location.origin + window.location.pathname;
+}
+
+/** Adresse saisie dans le formulaire, ou null si elle est vide/invalide. */
+function emailSaisi() {
+  const el = $('#login-email');
+  const v = (el.value || '').trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+    say($('#msg-connexion'), 'error',
+      'Saisissez d\'abord votre adresse email dans le champ ci-dessus.');
+    el.focus();
+    return null;
+  }
+  return v;
+}
+
+$('#btn-mdp-oublie').addEventListener('click', async () => {
+  const email = emailSaisi();
+  if (!email) return;
+  say($('#msg-connexion'), 'info', 'Envoi du lien…');
+  const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: retourAdmin() });
+  say($('#msg-connexion'), error ? 'error' : 'success', error
+    ? 'Envoi impossible : ' + error.message
+    : 'Un lien de réinitialisation vient d\'être envoyé à ' + email
+      + '. Ouvrez-le depuis cette même machine pour choisir un nouveau mot de passe.');
+});
+
+$('#btn-renvoyer-confirmation').addEventListener('click', async () => {
+  const email = emailSaisi();
+  if (!email) return;
+  say($('#msg-connexion'), 'info', 'Envoi de la confirmation…');
+  const { error } = await sb.auth.resend({ type: 'signup', email, options: { emailRedirectTo: retourAdmin() } });
+  say($('#msg-connexion'), error ? 'error' : 'success', error
+    ? 'Envoi impossible : ' + error.message
+    : 'Email de confirmation renvoyé à ' + email + '. Ouvrez le lien reçu, puis revenez vous connecter.');
+});
+
+/* Retour d'un lien de réinitialisation : Supabase ajoute #type=recovery à
+   l'adresse. On teste le hash brut avant que supabase-js ne le consomme. */
+const EN_RECUPERATION = /[#&]type=recovery/.test(window.location.hash);
+
+if (EN_RECUPERATION) {
+  $('#form-connexion').hidden = true;
+  $('#form-nouveau-mdp').hidden = false;
+  say($('#msg-connexion'), 'info', 'Choisissez votre nouveau mot de passe.');
+}
+
+$('#form-nouveau-mdp').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = $('#btn-nouveau-mdp');
+  const mdp = $('#nouveau-mdp').value;
+  if (mdp.length < 10) {
+    say($('#msg-connexion'), 'error', 'Le mot de passe doit faire au moins 10 caractères.');
+    return;
+  }
+  btn.disabled = true;
+  const { error } = await sb.auth.updateUser({ password: mdp });
+  btn.disabled = false;
+  if (error) {
+    say($('#msg-connexion'), 'error',
+      'Impossible d\'enregistrer le mot de passe : ' + error.message
+      + ' — le lien a peut-être expiré, demandez-en un nouveau.');
+    return;
+  }
+  // Le mot de passe est changé et la session est ouverte : on nettoie
+  // l'adresse (le jeton ne doit pas rester dans l'historique) et on entre.
+  history.replaceState(null, '', retourAdmin());
+  const { data } = await sb.auth.getSession();
+  if (data.session) showApp(data.session);
 });
 
 $('#btn-deconnexion').addEventListener('click', async () => {
@@ -601,5 +691,7 @@ function loadEverything() {
 }
 
 sb.auth.getSession().then(function (res) {
-  if (res.data.session) showApp(res.data.session);
+  // Pendant une réinitialisation, la session existe déjà mais l'utilisateur
+  // doit d'abord choisir son mot de passe : on ne l'envoie pas dans l'appli.
+  if (res.data.session && !EN_RECUPERATION) showApp(res.data.session);
 });

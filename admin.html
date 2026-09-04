@@ -33,6 +33,27 @@
       <button class="a-btn a-btn--gold" type="submit" style="width:100%" id="btn-connexion">Se connecter</button>
     </form>
 
+    <!-- Récupération d'accès : évite d'avoir à passer par Supabase Studio.
+         Les deux actions s'appuient sur l'adresse saisie ci-dessus. -->
+    <p class="a-login__links">
+      <button type="button" class="a-linkbtn" id="btn-mdp-oublie">Mot de passe oublié ?</button>
+      <span aria-hidden="true">·</span>
+      <button type="button" class="a-linkbtn" id="btn-renvoyer-confirmation">Renvoyer l'email de confirmation</button>
+    </p>
+
+    <!-- Affiché uniquement au retour d'un lien de réinitialisation
+         (l'adresse contient alors #type=recovery). -->
+    <form id="form-nouveau-mdp" hidden>
+      <div class="a-field">
+        <label for="nouveau-mdp">Choisir un nouveau mot de passe</label>
+        <input class="a-input" id="nouveau-mdp" type="password" autocomplete="new-password"
+               minlength="10" required aria-describedby="aide-mdp">
+        <p class="a-hint" id="aide-mdp">10 caractères minimum. Ce mot de passe donne accès aux
+           coordonnées des familles : ne le réutilisez pas d'un autre site.</p>
+      </div>
+      <button class="a-btn a-btn--gold" type="submit" style="width:100%" id="btn-nouveau-mdp">Enregistrer et se connecter</button>
+    </form>
+
     <p style="margin:18px 0 0;text-align:center;font-size:.8rem">
       <a href="index.html" style="color:#5d6880">Retour au site</a>
     </p>

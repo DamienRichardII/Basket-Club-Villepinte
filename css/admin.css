@@ -211,6 +211,24 @@ h1, h2, h3 { margin: 0; line-height: 1.2; }
 }
 .a-login__box p.sub { text-align: center; font-size: .82rem; color: var(--a-muted); margin: 0 0 22px; }
 
+/* Liens de récupération d'accès sous le formulaire de connexion. */
+.a-login__links {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  align-items: center; justify-content: center;
+  margin: 16px 0 0; font-size: .8rem; color: var(--a-muted);
+}
+.a-linkbtn {
+  background: none; border: 0; padding: 0;
+  font: inherit; color: var(--a-navy-soft, #23386d);
+  text-decoration: underline; text-underline-offset: 3px;
+  cursor: pointer;
+}
+.a-linkbtn:hover { color: var(--a-navy-dark); }
+.a-linkbtn:focus-visible { outline: 2px solid var(--a-gold); outline-offset: 3px; border-radius: 3px; }
+
+/* Aide sous un champ (contrainte de mot de passe, format attendu…). */
+.a-hint { margin: 6px 0 0; font-size: .76rem; line-height: 1.45; color: var(--a-muted); }
+
 :where(a, button, input, select, textarea):focus-visible {
   outline: 3px solid var(--a-gold); outline-offset: 2px;
 }

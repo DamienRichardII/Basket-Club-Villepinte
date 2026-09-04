@@ -81,8 +81,36 @@ Deux comptes sont déclarés (droits identiques, il n'y a pas de niveaux) :
 | `damien.miyouna@gmail.com` | DamCompany — développeur |
 | `bcvillepinte93@gmail.com` | Jean-Georges — président du club |
 
-Les mots de passe ne figurent pas ici : ils se réinitialisent depuis l'écran de
-connexion ou depuis Supabase Studio.
+Les mots de passe ne figurent pas ici, et personne ne peut les lire : Supabase n'en
+stocke que des empreintes chiffrées. Un membre du bureau qui a perdu son accès se
+débrouille seul depuis l'écran de connexion — voir ci-dessous.
+
+### ⚠ Prérequis : l'adresse de retour des emails
+
+**Authentication → URL Configuration**, dans Supabase Studio :
+
+| Champ | Valeur |
+|---|---|
+| Site URL | `https://basket-club-villepinte.vercel.app` |
+| Redirect URLs | `https://basket-club-villepinte.vercel.app/**` |
+
+Tant que le Site URL pointe sur `http://localhost:3000`, **tous** les liens envoyés
+par email (confirmation de compte, réinitialisation de mot de passe) s'ouvrent sur une
+page « localhost indisponible ». Le compte est bien confirmé au passage, mais la
+réinitialisation d'un mot de passe, elle, ne peut pas aboutir. C'est le seul réglage
+qui ne se fait ni par le code ni par le back-office.
+
+### Retrouver un accès perdu
+
+Depuis `/admin`, sous le formulaire de connexion :
+
+- **« Mot de passe oublié ? »** — saisir son adresse, cliquer, ouvrir le lien reçu :
+  la page propose alors de choisir un nouveau mot de passe et connecte directement.
+- **« Renvoyer l'email de confirmation »** — pour un compte créé mais jamais confirmé.
+  Tant qu'une adresse n'est pas confirmée, Supabase refuse la connexion ; le message
+  d'erreur de l'écran de connexion le dit explicitement.
+
+Aucune de ces deux actions ne demande d'intervention technique.
 
 ### Ajouter un administrateur
 
@@ -102,7 +130,7 @@ delete from public.admins where email = 'adresse@exemple.fr';
 
 ---
 
-## 4. Back-office (`/admin.html`)
+## 4. Back-office — https://basket-club-villepinte.vercel.app/admin
 
 Sept onglets :
 
