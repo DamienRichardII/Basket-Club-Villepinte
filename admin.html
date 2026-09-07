@@ -33,6 +33,18 @@
       <button class="a-btn a-btn--gold" type="submit" style="width:100%" id="btn-connexion">Se connecter</button>
     </form>
 
+    <!-- Accès temporaire sans mot de passe : lien magique envoyé par email.
+         Réservé pour la période où le bureau n'a pas encore ses identifiants
+         définitifs — retirer ce bloc une fois les comptes configurés. -->
+    <div class="a-login__divider"><span>ou</span></div>
+    <button type="button" class="a-btn a-btn--ghost" style="width:100%" id="btn-lien-magique">
+      Recevoir un lien de connexion par email
+    </button>
+    <p class="a-hint" style="text-align:center;margin-top:8px">
+      Aucun mot de passe requis : un lien arrive dans la boîte mail saisie ci-dessus,
+      il connecte directement au back-office en un clic.
+    </p>
+
     <!-- Récupération d'accès : évite d'avoir à passer par Supabase Studio.
          Les deux actions s'appuient sur l'adresse saisie ci-dessus. -->
     <p class="a-login__links">

@@ -229,6 +229,16 @@ h1, h2, h3 { margin: 0; line-height: 1.2; }
 /* Aide sous un champ (contrainte de mot de passe, format attendu…). */
 .a-hint { margin: 6px 0 0; font-size: .76rem; line-height: 1.45; color: var(--a-muted); }
 
+/* Séparateur entre connexion par mot de passe et lien magique. */
+.a-login__divider {
+  display: flex; align-items: center; gap: 10px;
+  margin: 18px 0 12px; color: var(--a-muted); font-size: .74rem;
+  text-transform: uppercase; letter-spacing: .06em;
+}
+.a-login__divider::before, .a-login__divider::after {
+  content: ""; flex: 1; height: 1px; background: var(--a-border, #e3e7f0);
+}
+
 :where(a, button, input, select, textarea):focus-visible {
   outline: 3px solid var(--a-gold); outline-offset: 2px;
 }

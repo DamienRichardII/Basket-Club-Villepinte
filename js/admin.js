@@ -132,6 +132,22 @@ $('#btn-renvoyer-confirmation').addEventListener('click', async () => {
     : 'Email de confirmation renvoyé à ' + email + '. Ouvrez le lien reçu, puis revenez vous connecter.');
 });
 
+$('#btn-lien-magique').addEventListener('click', async () => {
+  const email = emailSaisi();
+  if (!email) return;
+  say($('#msg-connexion'), 'info', 'Envoi du lien…');
+  // create_user: false — ce bouton ne doit jamais créer de compte, seulement
+  // connecter un compte admin déjà déclaré dans public.admins.
+  const { error } = await sb.auth.signInWithOtp({
+    email,
+    options: { shouldCreateUser: false, emailRedirectTo: retourAdmin() }
+  });
+  say($('#msg-connexion'), error ? 'error' : 'success', error
+    ? 'Envoi impossible : ' + error.message
+    : 'Un lien de connexion vient d\'être envoyé à ' + email
+      + '. Ouvrez-le depuis cette même machine : il connecte directement, sans mot de passe.');
+});
+
 /* Retour d'un lien de réinitialisation : Supabase ajoute #type=recovery à
    l'adresse. On teste le hash brut avant que supabase-js ne le consomme. */
 const EN_RECUPERATION = /[#&]type=recovery/.test(window.location.hash);
