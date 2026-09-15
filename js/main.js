@@ -87,7 +87,11 @@
         if (el.hasAttribute('data-setting-required')) el.hidden = true;
         return;
       }
-      el.href = prefix + val;
+      // tel: n'accepte pas les espaces : le numéro est saisi lisible
+      // ("06 63 51 18 45") dans les Réglages, on le compacte ici seulement
+      // pour le lien, l'affichage à l'écran garde ses espaces.
+      var cible = (prefix === 'tel:') ? val.replace(/[^\d+]/g, '') : val;
+      el.href = prefix + cible;
       el.hidden = false;
     });
 

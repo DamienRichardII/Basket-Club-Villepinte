@@ -10,78 +10,78 @@ sans intervention technique.
 
 ## 1. Points à trancher — ils bloquent une information déjà en ligne
 
-Le site affiche le **planning provisoire** transmis par Jean-Georges, dans sa
-**version 2 du 2 septembre 2026**. Un bandeau le signale au-dessus de la grille ;
-il se retire depuis **Réglages → Planning des entraînements** le jour où le bureau
-valide.
+Le site affiche le **planning provisoire du 15 septembre 2026**, transmis en PDF par le
+club. Ce document introduit une vraie distinction entre équipes **élite** (compétition)
+et **loisirs**, et déplace la quasi-totalité des créneaux garçons vers le seul Gymnase
+du Cosec — Gymnase André Mariage ne garde plus que les U18 Filles, l'Académie et les
+Séniors/Vétérans loisirs.
+
+**Deux fusions ont été appliquées** (décidées le 15/09) : les Séniors Garçons 1 (PRM)
+et 2 (DM3) n'en font plus qu'une, « Séniors Garçons élite » (mardi + jeudi 21h-22h30,
+inchangé) — l'ancienne fiche SG2 reste en base, hors ligne, par cohérence historique
+mais n'a aucune famille inscrite. Une nouvelle catégorie publique, **« Séniors et
+Vétérans — loisirs »** (Gymnase André Mariage, mercredi + vendredi 20h30-22h), a été
+ajoutée : **son tarif reste à fixer**, elle affiche « Sur demande ».
+
+**Deux fusions proposées par le document ont été volontairement laissées de côté**,
+le site gardant sa structure actuelle en attendant confirmation :
+
+### U11 : Filles/Garçons séparées ou mixte ?
+
+Le document ne montre plus qu'un seul créneau « U11 Mixte Loisirs » (Cosec, mercredi
+16h30-18h). Le site distingue aujourd'hui U11 Filles et U11 Garçons, avec des horaires
+différents — **10 familles sont déjà inscrites** sous l'un des deux codes actuels.
+Rien n'a été changé tant que ce n'est pas confirmé.
+
+### U15-U18 Féminin : une équipe ou deux ?
+
+Le document donne une seule « U15-U18 Féminin élite », née 2012-2013 uniquement.
+Le site distingue aujourd'hui U15 Filles (2012-2013) et U18 Filles (2009-2011) —
+**15 familles inscrites** entre les deux, dont 3 nées avant 2012 qui se retrouveraient
+hors de la tranche d'âge affichée si la fusion suit le document à la lettre.
+Rien n'a été changé tant que ce n'est pas confirmé.
 
 ### U18 Garçons et U21 Garçons : deux gymnases aux mêmes heures
 
-Le document leur donne des créneaux au Cosec (mercredi 19h30-21h, vendredi 21h-22h30)
-**et** à André Mariage (mercredi 20h30-22h, vendredi 20h-22h) — impossible.
-Choix retenu : **André Mariage l'emporte** le mercredi et le vendredi, les créneaux
-correspondants du Cosec ont été retirés. Il reste aux U18M leur lundi 21h-22h30 au
-Cosec, et aux U21M leurs mardi et jeudi. **À confirmer.**
-
-### U21 et Séniors : une seule ligne pour trois équipes
-
-Le document fusionne U21, SG1 et SG2 sur mardi / jeudi / vendredi.
-Choix retenu : **l'équipe première (SG1) reste séparée** sur mardi et jeudi 21h-22h30
-avec Houssen, comme aujourd'hui. U21M et SG2 prennent les créneaux du document.
-Conséquence : les trois équipes se retrouvent au Cosec le mardi de 21h à 22h30.
-**À confirmer** — si l'équipe première doit avoir le gymnase pour elle, il faut un
-créneau distinct.
-
-### U18 Filles : disparues de la version 2
-
-La version 1 leur donnait André Mariage, mercredi 20h30-22h et vendredi 20h-22h.
-La version 2 **supprime purement et simplement la ligne**, alors que les U18M-U21M
-gardent exactement ces mêmes créneaux — tout indique une ligne effacée par mégarde.
-
-Choix retenu : **les créneaux de la version 1 sont conservés** sur le site. Retirer
-l'horaire d'une équipe entière sur la foi d'un oubli ferait plus de dégâts que
-l'inverse, et une pré-inscription U18 Filles est déjà arrivée.
-**À confirmer d'urgence** — c'est le point le plus sensible du document.
+Point hérité des versions précédentes du planning, non revu dans ce document :
+à vérifier que le Cosec seul suffit désormais pour ces deux équipes (c'est ce que
+ce nouveau document indique, et c'est ce qui est appliqué).
 
 ### Séniors Filles : toujours absentes
 
-Ni dans la feuille Planning d'origine, ni dans ce nouveau document. La catégorie
-existe sur le site et affiche « Créneaux à confirmer par le club ».
+Ni dans ce document ni dans les précédents. La catégorie existe sur le site et
+affiche « Créneaux à confirmer par le club ».
 **L'équipe existe-t-elle cette saison, et à quels créneaux ?**
 
-### U11 : catégorie scindée
+### Coordonnées éducateurs : liste à vérifier
 
-Le nouveau planning distingue U11 Filles et U11 Garçons, avec des horaires différents.
-Deux catégories ont donc été créées, au même tarif qu'avant (230 €).
-L'ancienne catégorie « U11 Mixte » est conservée hors ligne : **une pré-inscription y
-fait référence**, son libellé doit rester lisible dans le back-office.
-À la reprise de contact avec cette famille, reclasser la demande en U11F ou U11M.
+Le document liste séparément, sans les relier clairement aux créneaux, les éducateurs
+et les catégories qu'ils encadrent : Houssen (Séniors Masculins, U11 Mixte), Vincent
+(U18 et U21 Masculins), Luxon (U15 et U18 Filles), Patrick (U13 Filles, U15 Masculins),
+David et Alioune (U13-U15 Loisirs), Alioune (U13 Elite), Marley et Johan (U7-U9),
+Service Civique (non précisé).
+
+**Un point mérite votre attention** : ce document indique Alioune sur le U13 Garçons
+élite, alors que le planning précédent (2 septembre) avait introduit **Didier** sur ce
+même créneau. Le site garde Didier pour l'instant — changer le nom d'un éducateur
+affiché aux familles sans confirmation du club serait plus risqué que de laisser
+l'ancien nom le temps d'un aller-retour avec vous.
 
 ### U7 : l'année 2020 n'est rattachée à aucune catégorie
 
-La version 2 annote les années de naissance : U7 = 2021-2022, U9 = 2018-2019,
-U11 = 2016-2017. **2020 n'apparaît nulle part.** Le site continue d'afficher
-U7 = 2020 · 2021 · 2022, pour ne fermer la porte à aucun enfant.
-À trancher : les 2020 sont-ils en U7 ou en U9 ?
+Toujours pas résolu depuis la version précédente : les documents annotent U7 = 2021-2022,
+U9 = 2018-2019 sans jamais mentionner 2020. Le site continue d'afficher U7 = 2020 · 2021
+· 2022 pour ne fermer la porte à personne.
 
-### « SC » devant Luxon
+### Tarif de l'Académie U13-U15 et des Séniors/Vétérans loisirs
 
-Le document écrit « SC -Luxon » pour les U11. Faute d'explication, seul **Luxon** est
-affiché. S'il s'agit d'un second éducateur, donner son nom.
-
-### Didier
-
-Nouveau nom dans le planning (U13 Garçons), absent des fichiers précédents.
-Nom complet et diplôme à fournir si une page « Éducateurs » est créée.
-
-### Tarif de l'Académie U13-U15
-
-Absent de la grille tarifaire. La catégorie affiche « Sur demande ».
+Absents de la grille tarifaire. Les deux catégories affichent « Sur demande ».
 
 ### Tarif des Séniors Filles
 
 La grille indique « Seniors — 250 € » sans distinction de genre : 250 € a donc été
-appliqué aux SG1, SG2 et SF. À confirmer si le tarif féminin diffère.
+appliqué aux Séniors Garçons et à Séniors Filles. À confirmer si le tarif féminin
+diffère.
 
 ---
 
