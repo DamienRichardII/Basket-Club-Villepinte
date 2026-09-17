@@ -16,22 +16,26 @@ et **loisirs**, et déplace la quasi-totalité des créneaux garçons vers le se
 du Cosec — Gymnase André Mariage ne garde plus que les U18 Filles, l'Académie et les
 Séniors/Vétérans loisirs.
 
-**Deux fusions ont été appliquées** (décidées le 15/09) : les Séniors Garçons 1 (PRM)
-et 2 (DM3) n'en font plus qu'une, « Séniors Garçons élite » (mardi + jeudi 21h-22h30,
-inchangé) — l'ancienne fiche SG2 reste en base, hors ligne, par cohérence historique
-mais n'a aucune famille inscrite. Une nouvelle catégorie publique, **« Séniors et
-Vétérans — loisirs »** (Gymnase André Mariage, mercredi + vendredi 20h30-22h), a été
-ajoutée : **son tarif reste à fixer**, elle affiche « Sur demande ».
+**Trois fusions ont été appliquées** (décidées le 15/09, puis confirmées et complétées
+par le bureau le 17/09 par email) : les Séniors Garçons 1 (PRM) et 2 (DM3) n'en font
+plus qu'une, « Séniors Garçons élite » (mardi + jeudi 21h-22h30, inchangé) — l'ancienne
+fiche SG2 reste en base, hors ligne, par cohérence historique mais n'a aucune famille
+inscrite.
 
-**Deux fusions proposées par le document ont été volontairement laissées de côté**,
-le site gardant sa structure actuelle en attendant confirmation :
+**Confirmation du bureau reçue le 17/09/2026 (email « comme convenu, en retour au
+modification »)** — appliquée en base et sur le site :
 
-### U11 : Filles/Garçons séparées ou mixte ?
-
-Le document ne montre plus qu'un seul créneau « U11 Mixte Loisirs » (Cosec, mercredi
-16h30-18h). Le site distingue aujourd'hui U11 Filles et U11 Garçons, avec des horaires
-différents — **10 familles sont déjà inscrites** sous l'un des deux codes actuels.
-Rien n'a été changé tant que ce n'est pas confirmé.
+- **U11 Filles et Garçons fusionnent** en une seule équipe « U11 Filles et Garçons —
+  Loisirs » : mercredi 16h30-18h au Gymnase du Cosec, samedi 10h30-12h au Gymnase
+  André Mariage (rue Infroit). Les anciennes fiches U11 Filles / U11 Garçons restent
+  en base, hors ligne, par cohérence historique avec les 10 familles déjà inscrites
+  sous l'un des deux anciens codes.
+- **L'Académie (code `AK`) devient « U13/U15 Académie »**, tarif fixé à **250 €**.
+- **La catégorie « Séniors et Vétérans — loisirs » devient « Séniors Filles et
+  Vétérans »** — elle répond donc à la question, restée ouverte depuis le début du
+  projet, de l'absence d'équipe Séniors Filles. **Son tarif reste à fixer** (le
+  bureau n'a communiqué qu'un renommage, pas de montant) : la fiche affiche toujours
+  « Sur demande » en attendant.
 
 ### U15-U18 Féminin : une équipe ou deux ?
 
@@ -46,12 +50,6 @@ Rien n'a été changé tant que ce n'est pas confirmé.
 Point hérité des versions précédentes du planning, non revu dans ce document :
 à vérifier que le Cosec seul suffit désormais pour ces deux équipes (c'est ce que
 ce nouveau document indique, et c'est ce qui est appliqué).
-
-### Séniors Filles : toujours absentes
-
-Ni dans ce document ni dans les précédents. La catégorie existe sur le site et
-affiche « Créneaux à confirmer par le club ».
-**L'équipe existe-t-elle cette saison, et à quels créneaux ?**
 
 ### Coordonnées éducateurs : liste à vérifier
 
@@ -73,15 +71,12 @@ Toujours pas résolu depuis la version précédente : les documents annotent U7 
 U9 = 2018-2019 sans jamais mentionner 2020. Le site continue d'afficher U7 = 2020 · 2021
 · 2022 pour ne fermer la porte à personne.
 
-### Tarif de l'Académie U13-U15 et des Séniors/Vétérans loisirs
+### Tarif de « Séniors Filles et Vétérans » (ex-SVL)
 
-Absents de la grille tarifaire. Les deux catégories affichent « Sur demande ».
-
-### Tarif des Séniors Filles
-
-La grille indique « Seniors — 250 € » sans distinction de genre : 250 € a donc été
-appliqué aux Séniors Garçons et à Séniors Filles. À confirmer si le tarif féminin
-diffère.
+Toujours absent de la grille tarifaire — le renommage confirmé le 17/09 ne portait
+que sur le nom, pas sur un montant. La fiche affiche « Sur demande » en attendant.
+Le tarif de l'Académie (`U13/U15 Académie`) est en revanche réglé : **250 €**,
+confirmé le 17/09.
 
 ---
 

@@ -234,16 +234,23 @@ select id, status_code, content, error_msg, created
 
 ## 7. Origine des données
 
-- **Catégories et planning** — document **« Planning Provisoire à Valider »** transmis
-  par le président (version 2 du 2 septembre 2026), qui remplace le
-  `planningentrainement.xlsx` initial. Il scinde les U11 en Filles / Garçons, déplace les U15 Filles au Cosec et
-  redistribue les créneaux du soir. Trois contradictions subsistent (U18M/U21M dans
-  deux gymnases à la même heure, fusion U21/Séniors, Séniors Filles absentes) :
-  les arbitrages retenus sont documentés dans `docs/CONTENU-A-FOURNIR.md`.
-  Le planning étant provisoire, un bandeau le signale sur la page Catégories —
-  il se retire depuis **Réglages → Planning des entraînements**.
-- **Tarifs des licences** — grille « Tarifs saison 2026-2027 » fournie par le club.
-  L'académie U13-U15 n'y figure pas : elle affiche « Sur demande ».
+- **Catégories et planning** — trois documents successifs du président ont fait
+  évoluer le planning : « Planning Provisoire à Valider » (2 septembre 2026, scinde
+  les U11 en Filles/Garçons), « Planning 2026-2027.pdf » (15 septembre 2026,
+  introduit la distinction élite/loisirs, fusionne Séniors Garçons 1+2, crée
+  « Séniors et Vétérans — loisirs »), puis un **email de confirmation du bureau
+  (17 septembre 2026)** qui tranche les points restés en suspens le 15/09 :
+  U11 Filles et Garçons refusionnent en une seule équipe loisirs (mercredi Cosec +
+  samedi André Mariage), l'Académie devient « U13/U15 Académie » à 250 €, et
+  « Séniors et Vétérans — loisirs » devient « Séniors Filles et Vétérans » — ce qui
+  répond du même coup à l'absence, jusque-là non résolue, d'une équipe Séniors
+  Filles. Le détail des arbitrages et ce qui reste ouvert (U15-U18 Féminin, tarif
+  Séniors Filles et Vétérans, etc.) est documenté dans `docs/CONTENU-A-FOURNIR.md`.
+  Le planning restant provisoire par endroits, un bandeau le signale sur la page
+  Catégories — il se retire depuis **Réglages → Planning des entraînements**.
+- **Tarifs des licences** — grille « Tarifs saison 2026-2027 » fournie par le club,
+  complétée depuis par le bureau (Académie U13/U15 à 250 € le 17/09). Les Séniors
+  Filles et Vétérans n'y figurent pas encore : la fiche affiche « Sur demande ».
 - **Boutique** — brochure Upset Sports. Seuls les visuels portant le blason de
   Villepinte ont été retenus (les pages Boissy sont ignorées). Les images ont été
   détourées automatiquement puis normalisées en WebP 560×560 sur fond transparent.
